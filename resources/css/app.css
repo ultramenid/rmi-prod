@@ -1,0 +1,51 @@
+/* ./resources/css/app.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.turbolinks-progress-bar {
+    height: 5px;
+    background-color: #882e27;
+  }
+
+
+
+  .selection-bg ::selection {
+    background-color: #79ffe1;
+}
+
+.dark .selection-bg ::selection {
+        background-color: #f81ce5;
+        color: white;
+}
+
+.text-rmi{
+    color: #152136;
+}
+.bgrmi{
+    background-color: #152136 ;
+}
+
+.bgdarkrmi{
+    background-color: #111725;
+}
+
+.border-rmi{
+    border-color: #152136;
+}
+
+.bg-edevelopment1{
+    background-color: #7da9db;
+}
+
+.bg-edevelopment2{
+    background-color: #0065b1;
+}
+
+.bg-edevelopment3{
+    background-color: #14387f;
+}
+
+
+
+
