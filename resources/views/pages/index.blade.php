@@ -197,34 +197,34 @@
             <div id="map" class="sm:block hidden sm:w-10/12 w-full overflow-auto h-screen sm:order-1 order-2" style=" background-color: #111725 "></div>
             <div class="flex flex-wrap sm:w-2/12 w-full sm:order-2 order-1  z-50">
                 <div id="data1" style="background-color: #111725;"  class=" hover:bg-gray-500 text-yellow-100 font-bold hover:underscore lg:w-6/12 w-full items-center flex justify-center px-2 border border-gray-800 cursor-pointer">
-                    <a href="https://rmidev.herokuapp.com/en/corporate/6">ADARO</a>
+                    <a href="https://remind.earth/en/corporate/18">ADARO</a>
                 </div>
                 <div id="data2" style="background-color: #111725;"  class=" hover:bg-gray-500 text-yellow-100 font-bold hover:underscore lg:w-6/12 w-full items-center flex justify-center px-2 border border-gray-800 cursor-pointer">
-                    <a href="https://rmidev.herokuapp.com/en/corporate/7">ANTAM</a>
+                    <a href="https://remind.earth/en/corporate/19">ANTAM</a>
                 </div>
                 <div id="data3" style="background-color: #111725;"  class=" hover:bg-gray-500 text-yellow-100 font-bold hover:underscore lg:w-6/12 w-full items-center flex justify-center px-2 border border-gray-800 cursor-pointer">
-                    <a href="https://rmidev.herokuapp.com/en/corporate/14">BRMS</a>
+                    <a href="https://remind.earth/en/corporate/20">BRMS</a>
                 </div>
                 <div id="data4" style="background-color: #111725;"  class=" hover:bg-gray-500 text-yellow-100 font-bold hover:underscore lg:w-6/12 w-full items-center flex justify-center px-2 border border-gray-800 cursor-pointer">
-                    <a href="https://rmidev.herokuapp.com/en/corporate/12">BUKIT ASAM</a>
+                    <a href="https://remind.earth/en/corporate/21">BUKIT ASAM</a>
                 </div>
                 <div id="data5" style="background-color: #111725;"  class=" hover:bg-gray-500 text-yellow-100 font-bold hover:underscore lg:w-6/12 w-full items-center flex justify-center px-2 border border-gray-800 cursor-pointer">
-                    <a href="https://rmidev.herokuapp.com/en/corporate/10">CITA</a>
+                    <a href="https://remind.earth/en/corporate/22">CITA</a>
                 </div>
                 <div id="data6" style="background-color: #111725;"  class=" hover:bg-gray-500 text-yellow-100 font-bold hover:underscore lg:w-6/12 w-full items-center flex justify-center px-2 border border-gray-800 cursor-pointer">
-                    <a href="https://rmidev.herokuapp.com/en/corporate/13">GEMS</a>
+                    <a href="https://remind.earth/en/corporate/23">GEMS</a>
                 </div>
                 <div id="data7" style="background-color: #111725;"  class=" hover:bg-gray-500 text-yellow-100 font-bold hover:underscore lg:w-6/12 w-full items-center flex justify-center px-2 border border-gray-800 cursor-pointer">
-                    <a href="https://rmidev.herokuapp.com/en/corporate/9">MERDEKA</a>
+                    <a href="https://remind.earth/en/corporate/24">MERDEKA</a>
                 </div>
                 <div id="data8" style="background-color: #111725;"  class=" hover:bg-gray-500 text-yellow-100 font-bold hover:underscore lg:w-6/12 w-full items-center flex justify-center px-2 border border-gray-800 cursor-pointer">
-                    <a href="https://rmidev.herokuapp.com/en/corporate/11">TIMAH</a>
+                    <a href="https://remind.earth/en/corporate/25">TIMAH</a>
                 </div>
                 <div id="data9" style="background-color: #111725;"  class=" hover:bg-gray-500 text-yellow-100 font-bold hover:underscore lg:w-6/12 w-full items-center flex justify-center px-2 border border-gray-800 cursor-pointer">
-                    <a href="https://rmidev.herokuapp.com/en/corporate/5">TOBA BARA</a>
+                    <a href="https://remind.earth/en/corporate/26">TOBA BARA</a>
                 </div>
                 <div id="data10" style="background-color: #111725;"  class=" hover:bg-gray-500 text-yellow-100 font-bold hover:underscore lg:w-6/12 w-full items-center flex justify-center px-2 border border-gray-800 cursor-pointer">
-                    <a href="https://rmidev.herokuapp.com/en/corporate/8">VALE</a>
+                    <a href="https://remind.earth/en/corporate/27">VALE</a>
                 </div>
 
             </div>
