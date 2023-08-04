@@ -238,6 +238,10 @@
             Spotlight: false,
             dataBconduct: false,
             eResponsibility: false,
+            eEconomicdevelopment: false,
+            eLifecyclemanagement: false,
+            eCommunitywellbeing: false,
+            eWorkingCondition: false,
 
             toogleOverview(){
                 this.Overview = true,
@@ -247,7 +251,11 @@
                 this.CorporateNetwork= false,
                 this.Spotlight = false,
                 this.dataBconduct = false,
-                this.eResponsibility = false
+                this.eResponsibility = false,
+                this.eEconomicdevelopment= false,
+                this.eLifecyclemanagement= false,
+                this.eCommunitywellbeing= false,
+                this.eWorkingCondition= false
             },
             toogleOperation(){
                 this.Overview = false,
@@ -257,7 +265,11 @@
                 this.CorporateNetwork= false,
                 this.Spotlight = false,
                 this.dataBconduct = false,
-                this.eResponsibility = false
+                this.eResponsibility = false,
+                this.eEconomicdevelopment= false,
+                this.eLifecyclemanagement= false,
+                this.eCommunitywellbeing= false,
+                this.eWorkingCondition= false
             },
             toogleFinancial(){
                 this.Overview = false,
@@ -267,7 +279,11 @@
                 this.CorporateNetwork= false,
                 this.Spotlight = false,
                 this.dataBconduct = false,
-                this.eResponsibility = false
+                this.eResponsibility = false,
+                this.eEconomicdevelopment= false,
+                this.eLifecyclemanagement= false,
+                this.eCommunitywellbeing= false,
+                this.eWorkingCondition= false
             },
             toogleOwnership(){
                 this.Overview = false,
@@ -278,6 +294,10 @@
                 this.Spotlight = false,
                 this.dataBconduct = false,
                 this.eResponsibility = false
+                this.eEconomicdevelopment= false,
+                this.eLifecyclemanagement= false,
+                this.eCommunitywellbeing= false,
+                this.eWorkingCondition= false
             },
             toogleCorporateNetwork(){
                 this.Overview = false,
@@ -288,6 +308,10 @@
                 this.Spotlight = false,
                 this.dataBconduct = false,
                 this.eResponsibility = false
+                this.eEconomicdevelopment= false,
+                this.eLifecyclemanagement= false,
+                this.eCommunitywellbeing= false,
+                this.eWorkingCondition= false
             },
             toogleSpotlight(){
                 this.Overview = false,
@@ -297,7 +321,11 @@
                 this.CorporateNetwork= false,
                 this.Spotlight = true,
                 this.dataBconduct = false,
-                this.eResponsibility = false
+                this.eResponsibility = false,
+                this.eEconomicdevelopment= false,
+                this.eLifecyclemanagement= false,
+                this.eCommunitywellbeing= false,
+                this.eWorkingCondition= false
             },
             toogleDataBconduct(){
                 this.Overview = false,
@@ -307,7 +335,11 @@
                 this.CorporateNetwork= false,
                 this.Spotlight = false,
                 this.dataBconduct = true,
-                this.eResponsibility = false
+                this.eResponsibility = false,
+                this.eEconomicdevelopment= false,
+                this.eLifecyclemanagement= false,
+                this.eCommunitywellbeing= false,
+                this.eWorkingCondition= false
             },
             toogleeResponsibility(){
                 this.Overview = false,
@@ -317,8 +349,68 @@
                 this.CorporateNetwork= false,
                 this.Spotlight = false,
                 this.dataBconduct = false,
-                this.eResponsibility = true
-            }
+                this.eResponsibility = true,
+                this.eEconomicdevelopment= false,
+                this.eLifecyclemanagement= false,
+                this.eCommunitywellbeing= false,
+                this.eWorkingCondition= false
+            },
+            toogleEconomicDevelopment(){
+                this.Overview = false,
+                this.Operation = false,
+                this.Financial = false,
+                this.Ownership = false,
+                this.CorporateNetwork= false,
+                this.Spotlight = false,
+                this.dataBconduct = false,
+                this.eResponsibility = false,
+                this.eEconomicdevelopment= true,
+                this.eLifecyclemanagement= false,
+                this.eCommunitywellbeing= false,
+                this.eWorkingCondition= false
+            },
+            toogleLifecyclemanagement(){
+                this.Overview = false,
+                this.Operation = false,
+                this.Financial = false,
+                this.Ownership = false,
+                this.CorporateNetwork= false,
+                this.Spotlight = false,
+                this.dataBconduct = false,
+                this.eResponsibility = false,
+                this.eEconomicdevelopment= false,
+                this.eLifecyclemanagement= true,
+                this.eCommunitywellbeing= false,
+                this.eWorkingCondition= false
+            },
+            toogleCommunitywellbeing(){
+                this.Overview = false,
+                this.Operation = false,
+                this.Financial = false,
+                this.Ownership = false,
+                this.CorporateNetwork= false,
+                this.Spotlight = false,
+                this.dataBconduct = false,
+                this.eResponsibility = false,
+                this.eEconomicdevelopment= false,
+                this.eLifecyclemanagement= false,
+                this.eCommunitywellbeing= true,
+                this.eWorkingCondition= false
+            },
+            toogleWorkingcondition(){
+                this.Overview = false,
+                this.Operation = false,
+                this.Financial = false,
+                this.Ownership = false,
+                this.CorporateNetwork= false,
+                this.Spotlight = false,
+                this.dataBconduct = false,
+                this.eResponsibility = false,
+                this.eEconomicdevelopment= false,
+                this.eLifecyclemanagement= false,
+                this.eCommunitywellbeing= false,
+                this.eWorkingCondition= true
+            },
 
         }))
 

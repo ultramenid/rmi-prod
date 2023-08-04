@@ -39,7 +39,7 @@
                         @forelse ($corporates as $item)
                                 <tr>
                                     <td class="px-6 py-4 break-words text-sm font-bold text-gray-500 dark:text-gray-100">
-                                        {{ $item->name }}
+                                        <a href="{{ url('/cms/corporates/'.$item->id) }}">{{ $item->name }}</a>
                                     </td>
                                     <td colspan="2" class=" break-words text-sm text-gray-500 dark:text-gray-300 ">
                                         <div class="relative " x-data="{ open: false }">

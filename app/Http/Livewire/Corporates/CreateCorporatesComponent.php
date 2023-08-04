@@ -9,7 +9,15 @@ use Livewire\Component;
 class CreateCorporatesComponent extends Component{
     public $sidenav = 'overview';
     public $overview = true, $operationalrea = false, $financial = false, $corporatenetwork = false, $spotlight = false;
-    public $overviewenglish, $overviewindonesia, $operationenglish, $operationindonesia, $financialenglish, $ownershipenglish, $ownershipindonesia, $financialindonesia, $corporatenetworkenglish, $corporatenetworkindonesia, $corporatename, $spotlightenglish, $spotlightindonesia, $execution, $bAverage, $bAll, $responsibility, $fAverage, $fAll, $groupname, $location;
+    public $overviewenglish, $overviewindonesia, $operationenglish, $operationindonesia, $financialenglish, $ownershipenglish, $ownershipindonesia, $financialindonesia, $corporatenetworkenglish, $corporatenetworkindonesia, $corporatename, $spotlightenglish, $spotlightindonesia,
+    $development, $developmentAverage, $developmentAll,
+    $execution, $bAverage, $bAll,
+    $management, $managementAverage, $managementAll,
+    $communityExecution, $communityAverage, $communityAll,
+    $condition, $workingAverage, $workingAll,
+    $responsibility, $fAverage, $fAll,
+
+    $groupname, $location;
 
 
     public function storeCorporate(){
@@ -31,6 +39,18 @@ class CreateCorporatesComponent extends Component{
                 'corporatenetworkindonesia' => $this->corporatenetworkindonesia,
                 'spotlightcasesenglish' => $this->spotlightenglish,
                 'spotlightcasesindonesia' => $this->spotlightindonesia,
+                'development' => $this->development,
+                'developmentAverage' => $this->developmentAverage,
+                'developmentAll' => $this->developmentAll,
+                'management' => $this->management,
+                'managementAverage' => $this->managementAverage,
+                'managementAll' => $this->managementAll,
+                'communityExecution' => $this->communityExecution,
+                'communityAverage'=> $this->communityAverage,
+                'communityAll' => $this->communityAll,
+                'condition' => $this->condition,
+                'workingAverage' => $this->workingAverage,
+                'workingAll' => $this->workingAll,
                 'bExecution' => $this->execution,
                 'bAverage' => $this->bAverage,
                 'bAll' => $this->bAll,

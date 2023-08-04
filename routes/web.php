@@ -58,7 +58,9 @@ Route::group(['middleware' => 'checkSession'], function () {
     // Route::get('/cms/page/financialandownership', [FinancialAndOwnershipController::class, 'index']);
     // Route::get('/cms/page/corporatenetwork', [CorporateNetworkController::class, 'index']);
     // Route::get('/cms/page/spotlightcases', [SpotlightCasesController::class, 'index']);
-
+    Route::group(['prefix' => '/cms/rmi-filemanager', 'middleware' => 'checkSession'], function () {
+        \UniSharp\LaravelFilemanager\Lfm::routes();
+    });
 
 });
 

@@ -10,7 +10,15 @@ class EditCorporatesComponent extends Component{
     public $idcorporates;
     public $sidenav = 'overview';
     public $overview = true, $operationalrea = false, $financial = false, $corporatenetwork = false, $spotlight = false;
-    public $overviewenglish, $overviewindonesia, $operationenglish, $operationindonesia, $financialenglish, $financialindonesia, $ownershipenglish, $ownershipindonesia, $corporatenetworkenglish, $corporatenetworkindonesia, $corporatename, $spotlightenglish, $spotlightindonesia, $execution, $bAverage, $bAll, $responsibility, $fAverage, $fAll, $groupname, $location;
+    public $overviewenglish, $overviewindonesia, $operationenglish, $operationindonesia, $financialenglish, $ownershipenglish, $ownershipindonesia, $financialindonesia, $corporatenetworkenglish, $corporatenetworkindonesia, $corporatename, $spotlightenglish, $spotlightindonesia,
+    $development, $developmentAverage, $developmentAll,
+    $execution, $bAverage, $bAll,
+    $management, $managementAverage, $managementAll,
+    $communityExecution, $communityAverage, $communityAll,
+    $condition, $workingAverage, $workingAll,
+    $responsibility, $fAverage, $fAll,
+
+    $groupname, $location;
 
     public function mount($idcorporates){
         $this->idcorporates = $idcorporates;
@@ -31,6 +39,18 @@ class EditCorporatesComponent extends Component{
         $this->corporatenetworkindonesia = $data->corporatenetworkindonesia;
         $this->spotlightenglish = $data->spotlightcasesenglish;
         $this->spotlightindonesia = $data->spotlightcasesindonesia;
+        $this->development = $data->development;
+        $this->developmentAverage = $data->developmentAverage;
+        $this->developmentAll = $data->developmentAll;
+        $this->management = $data->management;
+        $this->managementAverage = $data->managementAverage;
+        $this->managementAll = $data->managementAll;
+        $this->communityExecution = $data->communityExecution;
+        $this->communityAverage = $data->communityAverage;
+        $this->communityAll = $data->communityAll;
+        $this->condition = $data->condition;
+        $this->workingAverage = $data->workingAverage;
+        $this->workingAll = $data->workingAll;
         $this->execution = $data->bExecution;
         $this->bAverage = $data->bAverage;
         $this->bAll = $data->bAll;
@@ -58,6 +78,18 @@ class EditCorporatesComponent extends Component{
             'corporatenetworkindonesia' => $this->corporatenetworkindonesia,
             'spotlightcasesenglish' => $this->spotlightenglish,
             'spotlightcasesindonesia' => $this->spotlightindonesia,
+            'development' => $this->development,
+            'developmentAverage' => $this->developmentAverage,
+            'developmentAll' => $this->developmentAll,
+            'management' => $this->managementAverage,
+            'managementAverage' => $this->managementAverage,
+            'managementAll' => $this->managementAll,
+            'communityExecution' => $this->communityExecution,
+            'communityAverage' => $this->communityAverage,
+            'communityAll' => $this->communityAll,
+            'condition' => $this->workingAverage,
+            'workingAverage' => $this->workingAverage,
+            'workingAll' => $this->workingAll,
             'bExecution' => $this->execution,
             'bAverage' => $this->bAverage,
             'bAll' => str_replace(",",".", $this->bAll),

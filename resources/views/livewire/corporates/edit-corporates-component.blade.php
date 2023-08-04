@@ -98,6 +98,18 @@
                 </li>
 
                 <li class="text-gray-500">
+                    <template x-if="eEconomicdevelopment">
+                        <a @click="toogleEconomicDevelopment" class="cursor-pointer text-sm font-bold px-2 border-l-2 border-black dark:border-white dark:text-white text-newgray-900  dark:hover:text-white hover:text-black" >
+                           - Economic Development
+                        </a>
+                    </template>
+                    <template x-if="!eEconomicdevelopment">
+                        <a @click="toogleEconomicDevelopment" class="cursor-pointer px-2 text-sm  dark:hover:text-white hover:text-black" >
+                            - Economic Development
+                        </a>
+                    </template>
+                </li>
+                <li class="text-gray-500">
                     <template x-if="dataBconduct">
                         <a @click="toogleDataBconduct" class="cursor-pointer text-sm font-bold px-2 border-l-2 border-black dark:border-white dark:text-white text-newgray-900  dark:hover:text-white hover:text-black" >
                            - Bussines Conduct
@@ -106,6 +118,42 @@
                     <template x-if="!dataBconduct">
                         <a @click="toogleDataBconduct" class="cursor-pointer px-2 text-sm  dark:hover:text-white hover:text-black" >
                             - Bussines Conduct
+                        </a>
+                    </template>
+                </li>
+                <li class="text-gray-500">
+                    <template x-if="eLifecyclemanagement">
+                        <a @click="toogleLifecyclemanagement" class="cursor-pointer text-sm font-bold px-2 border-l-2 border-black dark:border-white dark:text-white text-newgray-900  dark:hover:text-white hover:text-black" >
+                           - Lifecycle Management
+                        </a>
+                    </template>
+                    <template x-if="!eLifecyclemanagement">
+                        <a @click="toogleLifecyclemanagement" class="cursor-pointer px-2 text-sm  dark:hover:text-white hover:text-black" >
+                            - Lifecycle Management
+                        </a>
+                    </template>
+                </li>
+                <li class="text-gray-500">
+                    <template x-if="eCommunitywellbeing">
+                        <a @click="toogleCommunitywellbeing" class="cursor-pointer text-sm font-bold px-2 border-l-2 border-black dark:border-white dark:text-white text-newgray-900  dark:hover:text-white hover:text-black" >
+                           - Community Wellbeing
+                        </a>
+                    </template>
+                    <template x-if="!eCommunitywellbeing">
+                        <a @click="toogleCommunitywellbeing" class="cursor-pointer px-2 text-sm  dark:hover:text-white hover:text-black" >
+                            - Community Wellbeing
+                        </a>
+                    </template>
+                </li>
+                <li class="text-gray-500">
+                    <template x-if="eWorkingCondition">
+                        <a @click="toogleWorkingcondition" class="cursor-pointer text-sm font-bold px-2 border-l-2 border-black dark:border-white dark:text-white text-newgray-900  dark:hover:text-white hover:text-black" >
+                           - Working Condition
+                        </a>
+                    </template>
+                    <template x-if="!eWorkingCondition">
+                        <a @click="toogleWorkingcondition" class="cursor-pointer px-2 text-sm  dark:hover:text-white hover:text-black" >
+                            - Working Condition
                         </a>
                     </template>
                 </li>
@@ -122,6 +170,8 @@
                         </a>
                     </template>
                 </li>
+
+
             </ul>
         </div>
         <livewire:toastr />
@@ -149,14 +199,108 @@
                     <textarea cols="80" id="location"  rows="4"  wire:model.defer='location' required placeholder="Location. . ." class="border-gray-300 border px-4 py-1 focus:outline-none"></textarea>
                 </div>
                 <p class="text-newgray-900 dark:text-gray-300 ">Content English :</p>
-                <div wire:ignore>
-                    <textarea cols="80" id="overviewenglish"  rows="10"  wire:model.defer='overviewenglish' required></textarea>
-                </div>
+                <div class="w-full  "
+                        wire:ignore
+                        x-init="
+                        tinymce.init({
+                            selector: '#overviewenglish',
+                            height : 500,
+                            height : '70vh',
+                            relative_urls : false,
+                                remove_script_host : false,
+                                convert_urls : true,
+                                content_style: 'body {  background-color: #f4f5f7; }',
+                                plugins:
+                                    'lists advlist autolink  link image  charmap    anchor pagebreak searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking table emoticons template  help',
+
+                                    toolbar: ' fullscreen fontfamily fontsizeselect fontsize   bold italic underline forecolor backcolor |  link image  |  bullist numlist   alignleft aligncenter alignright alignjustify outdent indent| ' +
+                                            ' | media  | ' +
+                                            ' backcolor emoticons |undo redo  help',
+                                    menu: {
+                                    favs: {title: 'My Favorites', items: 'code visualaid | searchreplace | emoticons'}
+                                    },
+                                    menubar: ' file edit view insert format tools table help',
+                                    file_picker_callback : function(callback, value, meta) {
+                                        var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
+                                        var y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
+                                        var cmsURL = '/cms/' + 'sawit-filemanager?editor=' + meta.fieldname;
+                                        if (meta.filetype == 'image') {
+                                            cmsURL = cmsURL + '&type=Images';
+                                        } else {
+                                            cmsURL = cmsURL + '&type=Files';
+                                        }
+                                        tinyMCE.activeEditor.windowManager.openUrl({
+                                            url : cmsURL,
+                                            title : 'Filemanager',
+                                            width : x * 0.8,
+                                            height : y * 0.8,
+                                            resizable : 'yes',
+                                            close_previous : 'no',
+                                            onMessage: (api, message) => {
+                                            callback(message.content);
+                                            }
+                                        });
+                                    },
+                                    setup: function(editor) {
+                                        editor.on('change', function(e) {
+                                            @this.set('overviewenglish', editor.getContent());
+                                    });
+                                }
+                        });">
+                        <textarea rows="20" id="overviewenglish" name="overviewenglish"  wire:model.defer='overviewenglish' required></textarea>
+                    </div>
 
                 <p class="text-newgray-900 dark:text-gray-300 mt-6">Content Indonesia :</p>
-                <div wire:ignore>
-                    <textarea  cols="80" id="overviewindonesia"  rows="10"wire:model.defer='overviewindonesia' required ></textarea>
-                </div>
+                <div class="w-full  "
+                        wire:ignore
+                        x-init="
+                        tinymce.init({
+                            selector: '#overviewindonesia',
+                            height : 500,
+                            height : '70vh',
+                            relative_urls : false,
+                                remove_script_host : false,
+                                convert_urls : true,
+                                content_style: 'body {  background-color: #f4f5f7; }',
+                                plugins:
+                                    'lists advlist autolink  link image  charmap    anchor pagebreak searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking table emoticons template  help',
+
+                                    toolbar: ' fullscreen fontfamily fontsizeselect fontsize   bold italic underline forecolor backcolor |  link image  |  bullist numlist   alignleft aligncenter alignright alignjustify outdent indent| ' +
+                                            ' | media  | ' +
+                                            ' backcolor emoticons |undo redo  help',
+                                    menu: {
+                                    favs: {title: 'My Favorites', items: 'code visualaid | searchreplace | emoticons'}
+                                    },
+                                    menubar: ' file edit view insert format tools table help',
+                                    file_picker_callback : function(callback, value, meta) {
+                                        var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
+                                        var y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
+                                        var cmsURL = '/cms/' + 'sawit-filemanager?editor=' + meta.fieldname;
+                                        if (meta.filetype == 'image') {
+                                            cmsURL = cmsURL + '&type=Images';
+                                        } else {
+                                            cmsURL = cmsURL + '&type=Files';
+                                        }
+                                        tinyMCE.activeEditor.windowManager.openUrl({
+                                            url : cmsURL,
+                                            title : 'Filemanager',
+                                            width : x * 0.8,
+                                            height : y * 0.8,
+                                            resizable : 'yes',
+                                            close_previous : 'no',
+                                            onMessage: (api, message) => {
+                                            callback(message.content);
+                                            }
+                                        });
+                                    },
+                                    setup: function(editor) {
+                                        editor.on('change', function(e) {
+                                            @this.set('overviewindonesia', editor.getContent());
+                                    });
+                                }
+                        });">
+                        <textarea rows="20" id="overviewindonesia" name="overviewindonesia"  wire:model.defer='overviewindonesia' required></textarea>
+                    </div>
             </div>
 
 
@@ -167,14 +311,109 @@
 
                 </div>
                 <p class="text-newgray-900 dark:text-gray-300 ">Content English :</p>
-                <div wire:ignore>
-                    <textarea cols="80" id="operationenglish"  rows="10"  wire:model.defer='operationenglish' required></textarea>
-                </div>
+                <div class="w-full  "
+                        wire:ignore
+                        x-init="
+                        tinymce.init({
+                            selector: '#operationenglish',
+                            height : 500,
+                            height : '70vh',
+                            relative_urls : false,
+                                remove_script_host : false,
+                                convert_urls : true,
+                                content_style: 'body {  background-color: #f4f5f7; }',
+                                plugins:
+                                    'lists advlist autolink  link image  charmap    anchor pagebreak searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking table emoticons template  help',
+
+                                    toolbar: ' fullscreen fontfamily fontsizeselect fontsize   bold italic underline forecolor backcolor |  link image  |  bullist numlist   alignleft aligncenter alignright alignjustify outdent indent| ' +
+                                            ' | media  | ' +
+                                            ' backcolor emoticons |undo redo  help',
+                                    menu: {
+                                    favs: {title: 'My Favorites', items: 'code visualaid | searchreplace | emoticons'}
+                                    },
+                                    menubar: ' file edit view insert format tools table help',
+                                    file_picker_callback : function(callback, value, meta) {
+                                        var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
+                                        var y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
+                                        var cmsURL = '/cms/' + 'sawit-filemanager?editor=' + meta.fieldname;
+                                        if (meta.filetype == 'image') {
+                                            cmsURL = cmsURL + '&type=Images';
+                                        } else {
+                                            cmsURL = cmsURL + '&type=Files';
+                                        }
+                                        tinyMCE.activeEditor.windowManager.openUrl({
+                                            url : cmsURL,
+                                            title : 'Filemanager',
+                                            width : x * 0.8,
+                                            height : y * 0.8,
+                                            resizable : 'yes',
+                                            close_previous : 'no',
+                                            onMessage: (api, message) => {
+                                            callback(message.content);
+                                            }
+                                        });
+                                    },
+                                    setup: function(editor) {
+                                        editor.on('change', function(e) {
+                                            @this.set('operationenglish', editor.getContent());
+                                    });
+                                }
+                        });">
+                        <textarea rows="20" id="operationenglish" name="operationenglish"  wire:model.defer='operationenglish' required></textarea>
+                    </div>
+
 
                 <p class="text-newgray-900 dark:text-gray-300 mt-6">Content Indonesia :</p>
-                <div wire:ignore>
-                    <textarea  cols="80" id="operationindonesia"  rows="10"wire:model.defer='operationindonesia' required ></textarea>
-                </div>
+                <div class="w-full  "
+                        wire:ignore
+                        x-init="
+                        tinymce.init({
+                            selector: '#operationindonesia',
+                            height : 500,
+                            height : '70vh',
+                            relative_urls : false,
+                                remove_script_host : false,
+                                convert_urls : true,
+                                content_style: 'body {  background-color: #f4f5f7; }',
+                                plugins:
+                                    'lists advlist autolink  link image  charmap    anchor pagebreak searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking table emoticons template  help',
+
+                                    toolbar: ' fullscreen fontfamily fontsizeselect fontsize   bold italic underline forecolor backcolor |  link image  |  bullist numlist   alignleft aligncenter alignright alignjustify outdent indent| ' +
+                                            ' | media  | ' +
+                                            ' backcolor emoticons |undo redo  help',
+                                    menu: {
+                                    favs: {title: 'My Favorites', items: 'code visualaid | searchreplace | emoticons'}
+                                    },
+                                    menubar: ' file edit view insert format tools table help',
+                                    file_picker_callback : function(callback, value, meta) {
+                                        var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
+                                        var y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
+                                        var cmsURL = '/cms/' + 'sawit-filemanager?editor=' + meta.fieldname;
+                                        if (meta.filetype == 'image') {
+                                            cmsURL = cmsURL + '&type=Images';
+                                        } else {
+                                            cmsURL = cmsURL + '&type=Files';
+                                        }
+                                        tinyMCE.activeEditor.windowManager.openUrl({
+                                            url : cmsURL,
+                                            title : 'Filemanager',
+                                            width : x * 0.8,
+                                            height : y * 0.8,
+                                            resizable : 'yes',
+                                            close_previous : 'no',
+                                            onMessage: (api, message) => {
+                                            callback(message.content);
+                                            }
+                                        });
+                                    },
+                                    setup: function(editor) {
+                                        editor.on('change', function(e) {
+                                            @this.set('operationindonesia', editor.getContent());
+                                    });
+                                }
+                        });">
+                        <textarea rows="20" id="operationindonesia" name="operationindonesia"  wire:model.defer='operationindonesia' required></textarea>
+                    </div>
             </div>
 
 
@@ -185,14 +424,108 @@
 
                 </div>
                 <p class="text-newgray-900 dark:text-gray-300 ">Content English :</p>
-                <div wire:ignore>
-                    <textarea cols="80" id="financialenglish"  rows="10"  wire:model.defer='financialenglish' required></textarea>
-                </div>
+                <div class="w-full  "
+                        wire:ignore
+                        x-init="
+                        tinymce.init({
+                            selector: '#financialenglish',
+                            height : 500,
+                            height : '70vh',
+                            relative_urls : false,
+                                remove_script_host : false,
+                                convert_urls : true,
+                                content_style: 'body {  background-color: #f4f5f7; }',
+                                plugins:
+                                    'lists advlist autolink  link image  charmap    anchor pagebreak searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking table emoticons template  help',
+
+                                    toolbar: ' fullscreen fontfamily fontsizeselect fontsize   bold italic underline forecolor backcolor |  link image  |  bullist numlist   alignleft aligncenter alignright alignjustify outdent indent| ' +
+                                            ' | media  | ' +
+                                            ' backcolor emoticons |undo redo  help',
+                                    menu: {
+                                    favs: {title: 'My Favorites', items: 'code visualaid | searchreplace | emoticons'}
+                                    },
+                                    menubar: ' file edit view insert format tools table help',
+                                    file_picker_callback : function(callback, value, meta) {
+                                        var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
+                                        var y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
+                                        var cmsURL = '/cms/' + 'sawit-filemanager?editor=' + meta.fieldname;
+                                        if (meta.filetype == 'image') {
+                                            cmsURL = cmsURL + '&type=Images';
+                                        } else {
+                                            cmsURL = cmsURL + '&type=Files';
+                                        }
+                                        tinyMCE.activeEditor.windowManager.openUrl({
+                                            url : cmsURL,
+                                            title : 'Filemanager',
+                                            width : x * 0.8,
+                                            height : y * 0.8,
+                                            resizable : 'yes',
+                                            close_previous : 'no',
+                                            onMessage: (api, message) => {
+                                            callback(message.content);
+                                            }
+                                        });
+                                    },
+                                    setup: function(editor) {
+                                        editor.on('change', function(e) {
+                                            @this.set('financialenglish', editor.getContent());
+                                    });
+                                }
+                        });">
+                        <textarea rows="20" id="financialenglish" name="financialenglish"  wire:model.defer='financialenglish' required></textarea>
+                    </div>
 
                 <p class="text-newgray-900 dark:text-gray-300 mt-6">Content Indonesia :</p>
-                <div wire:ignore>
-                    <textarea  cols="80" id="financialindonesia"  rows="10"wire:model.defer='financialindonesia' required ></textarea>
-                </div>
+                <div class="w-full  "
+                        wire:ignore
+                        x-init="
+                        tinymce.init({
+                            selector: '#financialindonesia',
+                            height : 500,
+                            height : '70vh',
+                            relative_urls : false,
+                                remove_script_host : false,
+                                convert_urls : true,
+                                content_style: 'body {  background-color: #f4f5f7; }',
+                                plugins:
+                                    'lists advlist autolink  link image  charmap    anchor pagebreak searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking table emoticons template  help',
+
+                                    toolbar: ' fullscreen fontfamily fontsizeselect fontsize   bold italic underline forecolor backcolor |  link image  |  bullist numlist   alignleft aligncenter alignright alignjustify outdent indent| ' +
+                                            ' | media  | ' +
+                                            ' backcolor emoticons |undo redo  help',
+                                    menu: {
+                                    favs: {title: 'My Favorites', items: 'code visualaid | searchreplace | emoticons'}
+                                    },
+                                    menubar: ' file edit view insert format tools table help',
+                                    file_picker_callback : function(callback, value, meta) {
+                                        var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
+                                        var y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
+                                        var cmsURL = '/cms/' + 'sawit-filemanager?editor=' + meta.fieldname;
+                                        if (meta.filetype == 'image') {
+                                            cmsURL = cmsURL + '&type=Images';
+                                        } else {
+                                            cmsURL = cmsURL + '&type=Files';
+                                        }
+                                        tinyMCE.activeEditor.windowManager.openUrl({
+                                            url : cmsURL,
+                                            title : 'Filemanager',
+                                            width : x * 0.8,
+                                            height : y * 0.8,
+                                            resizable : 'yes',
+                                            close_previous : 'no',
+                                            onMessage: (api, message) => {
+                                            callback(message.content);
+                                            }
+                                        });
+                                    },
+                                    setup: function(editor) {
+                                        editor.on('change', function(e) {
+                                            @this.set('financialindonesia', editor.getContent());
+                                    });
+                                }
+                        });">
+                        <textarea rows="20" id="financialindonesia" name="financialindonesia"  wire:model.defer='financialindonesia' required></textarea>
+                    </div>
             </div>
 
              {{-- ownership--}}
@@ -202,14 +535,109 @@
 
                 </div>
                 <p class="text-newgray-900 dark:text-gray-300 ">Content English :</p>
-                <div wire:ignore>
-                    <textarea  cols="80" id="ownershipenglish"  rows="10"wire:model.defer='ownershipenglish' required ></textarea>
-                </div>
+                <div class="w-full  "
+                        wire:ignore
+                        x-init="
+                        tinymce.init({
+                            selector: '#ownershipenglish',
+                            height : 500,
+                            height : '70vh',
+                            relative_urls : false,
+                                remove_script_host : false,
+                                convert_urls : true,
+                                content_style: 'body {  background-color: #f4f5f7; }',
+                                plugins:
+                                    'lists advlist autolink  link image  charmap    anchor pagebreak searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking table emoticons template  help',
+
+                                    toolbar: ' fullscreen fontfamily fontsizeselect fontsize   bold italic underline forecolor backcolor |  link image  |  bullist numlist   alignleft aligncenter alignright alignjustify outdent indent| ' +
+                                            ' | media  | ' +
+                                            ' backcolor emoticons |undo redo  help',
+                                    menu: {
+                                    favs: {title: 'My Favorites', items: 'code visualaid | searchreplace | emoticons'}
+                                    },
+                                    menubar: ' file edit view insert format tools table help',
+                                    file_picker_callback : function(callback, value, meta) {
+                                        var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
+                                        var y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
+                                        var cmsURL = '/cms/' + 'sawit-filemanager?editor=' + meta.fieldname;
+                                        if (meta.filetype == 'image') {
+                                            cmsURL = cmsURL + '&type=Images';
+                                        } else {
+                                            cmsURL = cmsURL + '&type=Files';
+                                        }
+                                        tinyMCE.activeEditor.windowManager.openUrl({
+                                            url : cmsURL,
+                                            title : 'Filemanager',
+                                            width : x * 0.8,
+                                            height : y * 0.8,
+                                            resizable : 'yes',
+                                            close_previous : 'no',
+                                            onMessage: (api, message) => {
+                                            callback(message.content);
+                                            }
+                                        });
+                                    },
+                                    setup: function(editor) {
+                                        editor.on('change', function(e) {
+                                            @this.set('ownershipenglish', editor.getContent());
+                                    });
+                                }
+                        });">
+                        <textarea rows="20" id="ownershipenglish" name="ownershipenglish"  wire:model.defer='ownershipenglish' required></textarea>
+                    </div>
+
 
                 <p class="text-newgray-900 dark:text-gray-300 mt-6">Content Indonesia :</p>
-                <div wire:ignore>
-                    <textarea  cols="80" id="ownershipindonesia"  rows="10"wire:model.defer='ownershipindonesia' required ></textarea>
-                </div>
+                <div class="w-full  "
+                        wire:ignore
+                        x-init="
+                        tinymce.init({
+                            selector: '#ownershipindonesia',
+                            height : 500,
+                            height : '70vh',
+                            relative_urls : false,
+                                remove_script_host : false,
+                                convert_urls : true,
+                                content_style: 'body {  background-color: #f4f5f7; }',
+                                plugins:
+                                    'lists advlist autolink  link image  charmap    anchor pagebreak searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking table emoticons template  help',
+
+                                    toolbar: ' fullscreen fontfamily fontsizeselect fontsize   bold italic underline forecolor backcolor |  link image  |  bullist numlist   alignleft aligncenter alignright alignjustify outdent indent| ' +
+                                            ' | media  | ' +
+                                            ' backcolor emoticons |undo redo  help',
+                                    menu: {
+                                    favs: {title: 'My Favorites', items: 'code visualaid | searchreplace | emoticons'}
+                                    },
+                                    menubar: ' file edit view insert format tools table help',
+                                    file_picker_callback : function(callback, value, meta) {
+                                        var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
+                                        var y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
+                                        var cmsURL = '/cms/' + 'sawit-filemanager?editor=' + meta.fieldname;
+                                        if (meta.filetype == 'image') {
+                                            cmsURL = cmsURL + '&type=Images';
+                                        } else {
+                                            cmsURL = cmsURL + '&type=Files';
+                                        }
+                                        tinyMCE.activeEditor.windowManager.openUrl({
+                                            url : cmsURL,
+                                            title : 'Filemanager',
+                                            width : x * 0.8,
+                                            height : y * 0.8,
+                                            resizable : 'yes',
+                                            close_previous : 'no',
+                                            onMessage: (api, message) => {
+                                            callback(message.content);
+                                            }
+                                        });
+                                    },
+                                    setup: function(editor) {
+                                        editor.on('change', function(e) {
+                                            @this.set('ownershipindonesia', editor.getContent());
+                                    });
+                                }
+                        });">
+                        <textarea rows="20" id="ownershipindonesia" name="ownershipindonesia"  wire:model.defer='ownershipindonesia' required></textarea>
+                    </div>
             </div>
 
 
@@ -220,14 +648,108 @@
 
                 </div>
                 <p class="text-newgray-900 dark:text-gray-300 ">Content English :</p>
-                <div wire:ignore>
-                    <textarea cols="80" id="corporatenetworkenglish"  rows="10"  wire:model.defer='corporatenetworkenglish' required></textarea>
-                </div>
+                <div class="w-full  "
+                        wire:ignore
+                        x-init="
+                        tinymce.init({
+                            selector: '#corporatenetworkenglish',
+                            height : 500,
+                            height : '70vh',
+                            relative_urls : false,
+                                remove_script_host : false,
+                                convert_urls : true,
+                                content_style: 'body {  background-color: #f4f5f7; }',
+                                plugins:
+                                    'lists advlist autolink  link image  charmap    anchor pagebreak searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking table emoticons template  help',
+
+                                    toolbar: ' fullscreen fontfamily fontsizeselect fontsize   bold italic underline forecolor backcolor |  link image  |  bullist numlist   alignleft aligncenter alignright alignjustify outdent indent| ' +
+                                            ' | media  | ' +
+                                            ' backcolor emoticons |undo redo  help',
+                                    menu: {
+                                    favs: {title: 'My Favorites', items: 'code visualaid | searchreplace | emoticons'}
+                                    },
+                                    menubar: ' file edit view insert format tools table help',
+                                    file_picker_callback : function(callback, value, meta) {
+                                        var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
+                                        var y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
+                                        var cmsURL = '/cms/' + 'sawit-filemanager?editor=' + meta.fieldname;
+                                        if (meta.filetype == 'image') {
+                                            cmsURL = cmsURL + '&type=Images';
+                                        } else {
+                                            cmsURL = cmsURL + '&type=Files';
+                                        }
+                                        tinyMCE.activeEditor.windowManager.openUrl({
+                                            url : cmsURL,
+                                            title : 'Filemanager',
+                                            width : x * 0.8,
+                                            height : y * 0.8,
+                                            resizable : 'yes',
+                                            close_previous : 'no',
+                                            onMessage: (api, message) => {
+                                            callback(message.content);
+                                            }
+                                        });
+                                    },
+                                    setup: function(editor) {
+                                        editor.on('change', function(e) {
+                                            @this.set('corporatenetworkenglish', editor.getContent());
+                                    });
+                                }
+                        });">
+                        <textarea rows="20" id="corporatenetworkenglish" name="corporatenetworkenglish"  wire:model.defer='corporatenetworkenglish' required></textarea>
+                    </div>
 
                 <p class="text-newgray-900 dark:text-gray-300 mt-6">Content Indonesia :</p>
-                <div wire:ignore>
-                    <textarea  cols="80" id="corporatenetworkindonesia"  rows="10"wire:model.defer='corporatenetworkindonesia' required ></textarea>
-                </div>
+                <div class="w-full  "
+                        wire:ignore
+                        x-init="
+                        tinymce.init({
+                            selector: '#corporatenetworkindonesia',
+                            height : 500,
+                            height : '70vh',
+                            relative_urls : false,
+                                remove_script_host : false,
+                                convert_urls : true,
+                                content_style: 'body {  background-color: #f4f5f7; }',
+                                plugins:
+                                    'lists advlist autolink  link image  charmap    anchor pagebreak searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking table emoticons template  help',
+
+                                    toolbar: ' fullscreen fontfamily fontsizeselect fontsize   bold italic underline forecolor backcolor |  link image  |  bullist numlist   alignleft aligncenter alignright alignjustify outdent indent| ' +
+                                            ' | media  | ' +
+                                            ' backcolor emoticons |undo redo  help',
+                                    menu: {
+                                    favs: {title: 'My Favorites', items: 'code visualaid | searchreplace | emoticons'}
+                                    },
+                                    menubar: ' file edit view insert format tools table help',
+                                    file_picker_callback : function(callback, value, meta) {
+                                        var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
+                                        var y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
+                                        var cmsURL = '/cms/' + 'sawit-filemanager?editor=' + meta.fieldname;
+                                        if (meta.filetype == 'image') {
+                                            cmsURL = cmsURL + '&type=Images';
+                                        } else {
+                                            cmsURL = cmsURL + '&type=Files';
+                                        }
+                                        tinyMCE.activeEditor.windowManager.openUrl({
+                                            url : cmsURL,
+                                            title : 'Filemanager',
+                                            width : x * 0.8,
+                                            height : y * 0.8,
+                                            resizable : 'yes',
+                                            close_previous : 'no',
+                                            onMessage: (api, message) => {
+                                            callback(message.content);
+                                            }
+                                        });
+                                    },
+                                    setup: function(editor) {
+                                        editor.on('change', function(e) {
+                                            @this.set('corporatenetworkindonesia', editor.getContent());
+                                    });
+                                }
+                        });">
+                        <textarea rows="20" id="corporatenetworkindonesia" name="corporatenetworkindonesia"  wire:model.defer='corporatenetworkindonesia' required></textarea>
+                    </div>
             </div>
 
             {{-- spotlight --}}
@@ -237,16 +759,129 @@
 
                 </div>
                 <p class="text-newgray-900 dark:text-gray-300 ">Content English :</p>
-                <div wire:ignore>
-                    <textarea cols="80" id="spotlightenglish"  rows="10"  wire:model.defer='spotlightenglish' required></textarea>
-                </div>
+                <div class="w-full  "
+                        wire:ignore
+                        x-init="
+                        tinymce.init({
+                            selector: '#spotlightenglish',
+                            height : 500,
+                            height : '70vh',
+                            relative_urls : false,
+                                remove_script_host : false,
+                                convert_urls : true,
+                                content_style: 'body {  background-color: #f4f5f7; }',
+                                plugins:
+                                    'lists advlist autolink  link image  charmap    anchor pagebreak searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking table emoticons template  help',
+
+                                    toolbar: ' fullscreen fontfamily fontsizeselect fontsize   bold italic underline forecolor backcolor |  link image  |  bullist numlist   alignleft aligncenter alignright alignjustify outdent indent| ' +
+                                            ' | media  | ' +
+                                            ' backcolor emoticons |undo redo  help',
+                                    menu: {
+                                    favs: {title: 'My Favorites', items: 'code visualaid | searchreplace | emoticons'}
+                                    },
+                                    menubar: ' file edit view insert format tools table help',
+                                    file_picker_callback : function(callback, value, meta) {
+                                        var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
+                                        var y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
+                                        var cmsURL = '/cms/' + 'sawit-filemanager?editor=' + meta.fieldname;
+                                        if (meta.filetype == 'image') {
+                                            cmsURL = cmsURL + '&type=Images';
+                                        } else {
+                                            cmsURL = cmsURL + '&type=Files';
+                                        }
+                                        tinyMCE.activeEditor.windowManager.openUrl({
+                                            url : cmsURL,
+                                            title : 'Filemanager',
+                                            width : x * 0.8,
+                                            height : y * 0.8,
+                                            resizable : 'yes',
+                                            close_previous : 'no',
+                                            onMessage: (api, message) => {
+                                            callback(message.content);
+                                            }
+                                        });
+                                    },
+                                    setup: function(editor) {
+                                        editor.on('change', function(e) {
+                                            @this.set('spotlightenglish', editor.getContent());
+                                    });
+                                }
+                        });">
+                        <textarea rows="20" id="spotlightenglish" name="spotlightenglish"  wire:model.defer='spotlightenglish' required></textarea>
+                    </div>
+
 
                 <p class="text-newgray-900 dark:text-gray-300 mt-6">Content Indonesia :</p>
-                <div wire:ignore>
-                    <textarea  cols="80" id="spotlightindonesia"  rows="10"wire:model.defer='spotlightindonesia' required ></textarea>
-                </div>
+                <div class="w-full  "
+                        wire:ignore
+                        x-init="
+                        tinymce.init({
+                            selector: '#spotlightindonesia',
+                            height : 500,
+                            height : '70vh',
+                            relative_urls : false,
+                                remove_script_host : false,
+                                convert_urls : true,
+                                content_style: 'body {  background-color: #f4f5f7; }',
+                                plugins:
+                                    'lists advlist autolink  link image  charmap    anchor pagebreak searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking table emoticons template  help',
+
+                                    toolbar: ' fullscreen fontfamily fontsizeselect fontsize   bold italic underline forecolor backcolor |  link image  |  bullist numlist   alignleft aligncenter alignright alignjustify outdent indent| ' +
+                                            ' | media  | ' +
+                                            ' backcolor emoticons |undo redo  help',
+                                    menu: {
+                                    favs: {title: 'My Favorites', items: 'code visualaid | searchreplace | emoticons'}
+                                    },
+                                    menubar: ' file edit view insert format tools table help',
+                                    file_picker_callback : function(callback, value, meta) {
+                                        var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
+                                        var y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
+                                        var cmsURL = '/cms/' + 'sawit-filemanager?editor=' + meta.fieldname;
+                                        if (meta.filetype == 'image') {
+                                            cmsURL = cmsURL + '&type=Images';
+                                        } else {
+                                            cmsURL = cmsURL + '&type=Files';
+                                        }
+                                        tinyMCE.activeEditor.windowManager.openUrl({
+                                            url : cmsURL,
+                                            title : 'Filemanager',
+                                            width : x * 0.8,
+                                            height : y * 0.8,
+                                            resizable : 'yes',
+                                            close_previous : 'no',
+                                            onMessage: (api, message) => {
+                                            callback(message.content);
+                                            }
+                                        });
+                                    },
+                                    setup: function(editor) {
+                                        editor.on('change', function(e) {
+                                            @this.set('spotlightindonesia', editor.getContent());
+                                    });
+                                }
+                        });">
+                        <textarea rows="20" id="spotlightindonesia" name="spotlightindonesia"  wire:model.defer='spotlightindonesia' required></textarea>
+                    </div>
             </div>
 
+            {{-- Economic Development --}}
+            <div x-show="eEconomicdevelopment" x-cloak style="display: none !important"  class="pb-6 h-screen">
+                <div class="flex  justify-between items-center mb-2">
+                    <h1 class="text-2xl text-newgray-900 dark:text-newgray-300 font-semibold ">Economic Development</h1>
+                </div>
+                <div class="mb-4 ">
+                    <label class="text-newgray-900 dark:text-gray-300">Development:</label>
+                    <input type="number" class="w-full border border-gray-300 py-1 px-4 focus:outline-none"  wire:model.defer='development' placeholder="0">
+                </div>
+                <div class="mb-4">
+                    <label class="text-newgray-900 dark:text-gray-300">Average:</label>
+                    <input type="number" class="w-full border border-gray-300 py-1 px-4 focus:outline-none"  wire:model.defer='developmentAverage' placeholder="0">
+                </div>
+                <div class="mb-4">
+                    <label class="text-newgray-900 dark:text-gray-300">E-ALL:</label>
+                    <input type="number" class="w-full border border-gray-300 py-1 px-4 focus:outline-none"  wire:model.defer='developmentAll' placeholder="0">
+                </div>
+            </div>
              {{-- Bussines Conduct --}}
              <div x-show="dataBconduct" x-cloak style="display: none !important"  class="pb-6 h-screen">
                 <div class="flex  justify-between items-center mb-2">
@@ -265,6 +900,63 @@
                     <input type="number" class="w-full border border-gray-300 py-1 px-4 focus:outline-none"  wire:model.defer='bAll' placeholder="0">
                 </div>
             </div>
+
+            {{-- Lifecycle Management --}}
+            <div x-show="eLifecyclemanagement" x-cloak style="display: none !important"  class="pb-6 h-screen">
+                <div class="flex  justify-between items-center mb-2">
+                    <h1 class="text-2xl text-newgray-900 dark:text-newgray-300 font-semibold ">Lifecycle Management</h1>
+                </div>
+                <div class="mb-4 ">
+                    <label class="text-newgray-900 dark:text-gray-300">Management:</label>
+                    <input type="number" class="w-full border border-gray-300 py-1 px-4 focus:outline-none"  wire:model.defer='management' placeholder="0">
+                </div>
+                <div class="mb-4">
+                    <label class="text-newgray-900 dark:text-gray-300">Average:</label>
+                    <input type="number" class="w-full border border-gray-300 py-1 px-4 focus:outline-none"  wire:model.defer='managementAverage' placeholder="0">
+                </div>
+                <div class="mb-4">
+                    <label class="text-newgray-900 dark:text-gray-300">B-ALL:</label>
+                    <input type="number" class="w-full border border-gray-300 py-1 px-4 focus:outline-none"  wire:model.defer='managementAll' placeholder="0">
+                </div>
+            </div>
+            {{-- Community Wellbeing --}}
+            <div x-show="eCommunitywellbeing" x-cloak style="display: none !important"  class="pb-6 h-screen">
+                <div class="flex  justify-between items-center mb-2">
+                    <h1 class="text-2xl text-newgray-900 dark:text-newgray-300 font-semibold ">Community Wellbeing</h1>
+                </div>
+                <div class="mb-4 ">
+                    <label class="text-newgray-900 dark:text-gray-300">Execution:</label>
+                    <input type="number" class="w-full border border-gray-300 py-1 px-4 focus:outline-none"  wire:model.defer='communityExecution' placeholder="0">
+                </div>
+                <div class="mb-4">
+                    <label class="text-newgray-900 dark:text-gray-300">Average:</label>
+                    <input type="number" class="w-full border border-gray-300 py-1 px-4 focus:outline-none"  wire:model.defer='communityAverage' placeholder="0">
+                </div>
+                <div class="mb-4">
+                    <label class="text-newgray-900 dark:text-gray-300">B-ALL:</label>
+                    <input type="number" class="w-full border border-gray-300 py-1 px-4 focus:outline-none"  wire:model.defer='communityAll' placeholder="0">
+                </div>
+            </div>
+
+            {{-- Working Conditions --}}
+            <div x-show="eWorkingCondition" x-cloak style="display: none !important"  class="pb-6 h-screen">
+                <div class="flex  justify-between items-center mb-2">
+                    <h1 class="text-2xl text-newgray-900 dark:text-newgray-300 font-semibold ">Working Conditions</h1>
+                </div>
+                <div class="mb-4 ">
+                    <label class="text-newgray-900 dark:text-gray-300">Condition:</label>
+                    <input type="number" class="w-full border border-gray-300 py-1 px-4 focus:outline-none"  wire:model.defer='condition' placeholder="0">
+                </div>
+                <div class="mb-4">
+                    <label class="text-newgray-900 dark:text-gray-300">Average:</label>
+                    <input type="number" class="w-full border border-gray-300 py-1 px-4 focus:outline-none"  wire:model.defer='workingAverage' placeholder="0">
+                </div>
+                <div class="mb-4">
+                    <label class="text-newgray-900 dark:text-gray-300">B-ALL:</label>
+                    <input type="number" class="w-full border border-gray-300 py-1 px-4 focus:outline-none"  wire:model.defer='workingAll' placeholder="0">
+                </div>
+            </div>
+
 
             {{-- Environmental Responsibility --}}
             <div x-show="eResponsibility" x-cloak style="display: none !important"  class="pb-6 h-screen">
@@ -286,77 +978,7 @@
             </div>
 
         </div>
-        <script src="{{ asset('assets/richeditor/ckeditor.js') }}"></script>
 
-        <script>
-                const overviewenglish= CKEDITOR.replace('overviewenglish',{
-                                height: 400,
-                                baseFloatZIndex: 10005
-                                });
-                const overviewindonesia= CKEDITOR.replace('overviewindonesia',{
-                                height: 400,
-                                baseFloatZIndex: 10005
-                                });
-
-                const operationenglish= CKEDITOR.replace('operationenglish',{
-                                height: 400,
-                                baseFloatZIndex: 10005
-                                });
-                const operationindonesia= CKEDITOR.replace('operationindonesia',{
-                                height: 400,
-                                baseFloatZIndex: 10005
-                                });
-                const financialenglish= CKEDITOR.replace('financialenglish',{
-                                height: 400,
-                                baseFloatZIndex: 10005
-                                });
-                const financialindonesia= CKEDITOR.replace('financialindonesia',{
-                                height: 400,
-                                baseFloatZIndex: 10005
-                                });
-                const ownershipenglish= CKEDITOR.replace('ownershipenglish',{
-                                height: 400,
-                                baseFloatZIndex: 10005
-                                });
-                const ownershipindonesia= CKEDITOR.replace('ownershipindonesia',{
-                                height: 400,
-                                baseFloatZIndex: 10005
-                                });
-                const corporatenetworkenglish= CKEDITOR.replace('corporatenetworkenglish',{
-                                height: 400,
-                                baseFloatZIndex: 10005
-                                });
-                const corporatenetworkindonesia= CKEDITOR.replace('corporatenetworkindonesia',{
-                                height: 400,
-                                baseFloatZIndex: 10005
-                                });
-                const spotlightenglish= CKEDITOR.replace('spotlightenglish',{
-                                height: 400,
-                                baseFloatZIndex: 10005
-                                });
-                const spotlightindonesia= CKEDITOR.replace('spotlightindonesia',{
-                                height: 400,
-                                baseFloatZIndex: 10005
-                                });
-
-
-
-                document.querySelector("#btnUpdate").addEventListener("click", () => {
-                    @this.set('overviewenglish', overviewenglish.getData());
-                    @this.set('overviewindonesia', overviewindonesia.getData());
-                    @this.set('operationenglish', operationenglish.getData());
-                    @this.set('operationindonesia', operationindonesia.getData());
-                    @this.set('financialenglish', financialenglish.getData());
-                    @this.set('financialindonesia', financialindonesia.getData());
-                    @this.set('ownershipenglish', ownershipenglish.getData());
-                    @this.set('ownershipindonesia', ownershipindonesia.getData());
-                    @this.set('corporatenetworkenglish', corporatenetworkenglish.getData());
-                    @this.set('corporatenetworkindonesia', corporatenetworkindonesia.getData());
-                    @this.set('spotlightenglish', spotlightenglish.getData());
-                    @this.set('spotlightindonesia', spotlightindonesia.getData());
-                });
-
-        </script>
     </div>
 </div>
 
