@@ -39,21 +39,21 @@
                     </div>
                     <div id="chart2"></div>
                 </div>
-                <div class="bgrmi sm:w-4/12 w-full">
+                <div class="bgrmi sm:w-4/12 w-full mt-12">
                     <div class="flex items-center space-x-3 px-4  ">
                         <img src="{{ asset('assets/Communitywel.png') }}" alt="" class="w-9">
                         <a href="#" class="text-gray-300  flex underline text-xl">Community Wellbeing</a>
                     </div>
                     <div id="chart3"></div>
                 </div>
-                <div class="bgrmi sm:w-4/12 w-full">
+                <div class="bgrmi sm:w-4/12 w-full mt-12">
                     <div class="flex items-center space-x-3 px-4  ">
                         <img src="{{ asset('assets/WorkingConditions.png') }}" alt="" class="w-9">
                         <a href="#" class="text-gray-300  flex underline text-xl">Working Condition</a>
                     </div>
                     <div id="chart4"></div>
                 </div>
-                <div class="bgrmi sm:w-4/12 w-full">
+                <div class="bgrmi sm:w-4/12 w-full mt-12">
                     <div class="flex items-center space-x-3 px-4  ">
                         <img src="{{ asset('assets/leaf.png') }}" alt="" class="w-9">
                         <a href="#" class="text-gray-300  flex underline text-xl">Environmental Responsi</a>
@@ -333,9 +333,9 @@
               columnWidth: '50%'
             }
           },
-          colors:['#2A63AB', '#835640', '#835640'],
+          colors:['#0065b0', '#ffcd10', '#835640'],
           fill: {
-            colors: ['#2A63AB', '#835640', '#835640'],
+            colors: ['#0065b0', '#ffcd10', '#835640'],
 
           },
           markers: {
@@ -416,9 +416,9 @@
               columnWidth: '50%'
             }
           },
-          colors:['#865F47', '#85B645', '#85B645'],
+          colors:['#865F47', '#ffcd10', '#85B645'],
           fill: {
-            colors: ['#865F47', '#85B645', '#85B645'],
+            colors: ['#865F47', '#ffcd10', '#85B645'],
 
           },
           markers: {
@@ -461,7 +461,7 @@
             type: 'line',
             data: lifecyclemanagement.managementAverage,
           },{
-            name: 'BC-ALL',
+            name: 'LM-ALL',
             type: 'area',
             data: lifecyclemanagement.managementAll,
           }],
@@ -499,9 +499,9 @@
               columnWidth: '50%'
             }
           },
-          colors:['#99277E', '#835640', '#835640'],
+          colors:['#99277E', '#ffcd10', '#835640'],
           fill: {
-            colors: ['#99277E', '#835640', '#835640'],
+            colors: ['#99277E', '#ffcd10', '#835640'],
 
           },
           markers: {
@@ -544,7 +544,7 @@
             type: 'line',
             data: communitywellbeing.communityAverage,
           },{
-            name: 'BC-ALL',
+            name: 'CW-ALL',
             type: 'area',
             data: communitywellbeing.communityAll,
           }],
@@ -582,9 +582,9 @@
               columnWidth: '50%'
             }
           },
-          colors:['#E08330', '#835640', '#835640'],
+          colors:['#E08330', '#ffcd10', '#835640'],
           fill: {
-            colors: ['#E08330', '#835640', '#835640'],
+            colors: ['#E08330', '#ffcd10', '#835640'],
 
           },
           markers: {
@@ -627,7 +627,7 @@
             type: 'line',
             data: workingconditions.workingAverage,
           },{
-            name: 'BC-ALL',
+            name: 'WC-ALL',
             type: 'area',
             data: workingconditions.workingAll,
           }],
@@ -665,9 +665,9 @@
               columnWidth: '50%'
             }
           },
-          colors:['#D23A2B', '#835640', '#835640'],
+          colors:['#D23A2B', '#ffcd10', '#835640'],
           fill: {
-            colors: ['#D23A2B', '#835640', '#835640'],
+            colors: ['#D23A2B', '#ffcd10', '#835640'],
 
           },
           markers: {
@@ -710,7 +710,7 @@
             type: 'line',
             data: environmental.eAverage,
           },{
-            name: 'BC-ALL',
+            name: 'ER-ALL',
             type: 'area',
             data: environmental.fAll,
           }],
@@ -748,9 +748,9 @@
               columnWidth: '50%'
             }
           },
-          colors:['#85B645', '#835640', '#835640'],
+          colors:['#85B645', '#ffcd10', '#835640'],
           fill: {
-            colors: ['#85B645', '#835640', '#835640'],
+            colors: ['#85B645', '#ffcd10', '#835640'],
 
           },
           markers: {
