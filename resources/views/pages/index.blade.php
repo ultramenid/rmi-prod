@@ -17,22 +17,54 @@
 
 
             <h1 class="uppercase text-center text-gray-300 sm:text-3xl text-xl font-bold mb-6 px-4">{{__('Overall Company Result')}}</h1>
-            <div class="flex sm:flex-row flex-col justify-between ">
-                <div class=" w-full h-full ">
-                    <span class="inline-flex items-center space-x-3 px-4 ">
-                        <img src="{{ asset('assets/handshake.png') }}" alt="" class="h-10">
-                        <a href="#" class="text-gray-300 sm:text-2xl inline-flex underline  text-xl">{{__('Bussines Conduct')}}</a>
-                    </span>
-                    <livewire:chart-bconduct />
+            <div class="flex w-full sm:flex-row flex-col flex-wrap px-4">
+                <div class="bgrmi  sm:w-4/12 w-full">
+                    <div class="flex items-center space-x-3 px-4  ">
+                        <img src="{{ asset('assets/Economicdevelopicon.png') }}" alt="" class="w-9">
+                        <a href="#" class="text-gray-300 sm:text-2xl flex underline text-xl">Economic Development</a>
+                    </div>
+                    <div id="chart"></div>
                 </div>
-                <div class=" w-full h-full">
-                    <span class="inline-flex items-center space-x-3 px-4  ">
+                <div class="bgrmi sm:w-4/12 w-full">
+                    <div class="flex items-center space-x-3 px-4  ">
+                        <img src="{{ asset('assets/handshake.png') }}" alt="" class="w-9">
+                        <a href="#" class="text-gray-300 sm:text-2xl flex underline text-xl">Bussines Conduct</a>
+                    </div>
+                    <div id="chart1"></div>
+                </div>
+                <div class="bgrmi sm:w-4/12 w-full">
+                    <div class="flex items-center space-x-3 px-4  ">
+                        <img src="{{ asset('assets/lifecycle.png') }}" alt="" class="w-9">
+                        <a href="#" class="text-gray-300 sm:text-2xl flex underline text-xl">Lifecycle Management</a>
+                    </div>
+                    <div id="chart2"></div>
+                </div>
+                <div class="bgrmi sm:w-4/12 w-full">
+                    <div class="flex items-center space-x-3 px-4  ">
+                        <img src="{{ asset('assets/Communitywel.png') }}" alt="" class="w-9">
+                        <a href="#" class="text-gray-300 sm:text-2xl flex underline text-xl">Community Wellbeing</a>
+                    </div>
+                    <div id="chart3"></div>
+                </div>
+                <div class="bgrmi sm:w-4/12 w-full">
+                    <div class="flex items-center space-x-3 px-4  ">
+                        <img src="{{ asset('assets/WorkingConditions.png') }}" alt="" class="w-9">
+                        <a href="#" class="text-gray-300 sm:text-2xl flex underline text-xl">Working Condition</a>
+                    </div>
+                    <div id="chart4"></div>
+                </div>
+                <div class="bgrmi sm:w-4/12 w-full">
+                    <div class="flex items-center space-x-3 px-4  ">
                         <img src="{{ asset('assets/leaf.png') }}" alt="" class="w-9">
-                        <a href="#" class="text-gray-300 sm:text-2xl inline-flex underline text-xl">Environmental Responsibility</a>
-                    </span>
-                    <livewire:chart-eresponsibility />
+                        <a href="#" class="text-gray-300 sm:text-2xl flex underline text-xl">Environmental Responsi</a>
+                    </div>
+                    <div id="chart5"></div>
                 </div>
             </div>
+
+
+
+
 
         </div>
 
@@ -244,4 +276,566 @@
 
 
     @include('partials.footer')
+    <script>
+        var economicdevelopment = JSON.parse('<?php echo $dataEconomicDevelopment ?>')
+        var bussinesconduct = JSON.parse('<?php echo $dataBussinessConduct ?>')
+        var lifecyclemanagement = JSON.parse('<?php echo $dataLifecyclemanagement ?>')
+        var communitywellbeing = JSON.parse('<?php echo $dataCommunitywellbeing ?>')
+        var workingconditions = JSON.parse('<?php echo $dataWorkingconditions ?>')
+        var environmental = JSON.parse('<?php echo $dataEnviromental ?>')
+
+        console.log(lifecyclemanagement)
+        var options = {
+          series: [{
+            name: 'Economic Development %' ,
+            type: 'bar',
+            data: economicdevelopment.development,
+          }, {
+            name: 'Average %',
+            type: 'line',
+            data: economicdevelopment.developmentAverage,
+          },{
+            name: 'ED-ALL',
+            type: 'area',
+            data: economicdevelopment.developmentAll,
+          }],
+
+          chart: {
+            id: 'development',
+            group: 'charts',
+            foreColor: 'gray',
+            width: '100%',
+            height: 450,
+            type: 'line',
+            stacked: false,
+            toolbar: {
+              show: true,
+              offsetX: 0,
+              offsetY: 0,
+              tools: {
+              download: true,
+              selection: false,
+              reset: false,
+              zoom: false,
+              zoomin: false,
+              zoomout: false,
+              pan: false
+              },
+            },
+
+          },
+          stroke: {
+            width: [0, 2, 5],
+            curve: 'smooth'
+          },
+          plotOptions: {
+            bar: {
+              columnWidth: '50%'
+            }
+          },
+          colors:['#2A63AB', '#835640', '#835640'],
+          fill: {
+            colors: ['#2A63AB', '#835640', '#835640'],
+            gradient: {
+              inverseColors: false,
+              shade: 'light',
+              type: "vertical",
+              opacityFrom: 0.85,
+              opacityTo: 0.55,
+              stops: [0, 100, 100, 100]
+            }
+          },
+          markers: {
+            size: 0
+          },
+          labels:economicdevelopment.name,
+          xaxis: {
+              type: 'category',
+              categories: []
+          },
+          yaxis: {
+            type: 'string',
+            labels: {
+              minWidth: 40,
+              formatter: function (value) {
+                return value + "%";
+              }
+            },
+            min: 0,
+            max: 100
+          },
+          tooltip: {
+            shared: true,
+            intersect: false,
+            theme: "dark",
+            y: {
+              formatter: function (value) {
+                return value.toFixed(2);
+              }
+            },
+          }
+        };
+        var options1 = {
+          series: [{
+            name: 'Bussiness Conduct %' ,
+            type: 'bar',
+            data: bussinesconduct.bExecution,
+          }, {
+            name: 'Average %',
+            type: 'line',
+            data: bussinesconduct.bAverage,
+          },{
+            name: 'BC-ALL',
+            type: 'area',
+            data: bussinesconduct.bAll,
+          }],
+
+          chart: {
+            id: 'busssines',
+            group: 'charts',
+            foreColor: 'gray',
+            width: '100%',
+            height: 450,
+            type: 'line',
+            stacked: false,
+            toolbar: {
+              show: true,
+              offsetX: 0,
+              offsetY: 0,
+              tools: {
+              download: true,
+              selection: false,
+              reset: false,
+              zoom: false,
+              zoomin: false,
+              zoomout: false,
+              pan: false
+              },
+            },
+
+          },
+          stroke: {
+            width: [0, 2, 5],
+            curve: 'smooth'
+          },
+          plotOptions: {
+            bar: {
+              columnWidth: '50%'
+            }
+          },
+          colors:['#865F47', '#85B645', '#85B645'],
+          fill: {
+            colors: ['#865F47', '#85B645', '#85B645'],
+            gradient: {
+              inverseColors: false,
+              shade: 'light',
+              type: "vertical",
+              opacityFrom: 0.85,
+              opacityTo: 0.55,
+              stops: [0, 100, 100, 100]
+            }
+          },
+          markers: {
+            size: 0
+          },
+          labels:bussinesconduct.name,
+          xaxis: {
+              type: 'category',
+              categories: []
+          },
+          yaxis: {
+            type: 'string',
+            labels: {
+              minWidth: 40,
+              formatter: function (value) {
+                return value + "%";
+              }
+            },
+            min: 0,
+            max: 100
+          },
+          tooltip: {
+            shared: true,
+            intersect: false,
+            theme: "dark",
+            y: {
+              formatter: function (value) {
+                return value.toFixed(2);
+              }
+            },
+          }
+        };
+        var options2 = {
+          series: [{
+            name: 'Lifecyle Management %' ,
+            type: 'bar',
+            data: lifecyclemanagement.management,
+          }, {
+            name: 'Average %',
+            type: 'line',
+            data: lifecyclemanagement.managementAverage,
+          },{
+            name: 'BC-ALL',
+            type: 'area',
+            data: lifecyclemanagement.managementAll,
+          }],
+
+          chart: {
+            id: 'management',
+            group: 'charts',
+            foreColor: 'gray',
+            width: '100%',
+            height: 450,
+            type: 'line',
+            stacked: false,
+            toolbar: {
+              show: true,
+              offsetX: 0,
+              offsetY: 0,
+              tools: {
+              download: true,
+              selection: false,
+              reset: false,
+              zoom: false,
+              zoomin: false,
+              zoomout: false,
+              pan: false
+              },
+            },
+
+          },
+          stroke: {
+            width: [0, 2, 5],
+            curve: 'smooth'
+          },
+          plotOptions: {
+            bar: {
+              columnWidth: '50%'
+            }
+          },
+          colors:['#99277E', '#835640', '#835640'],
+          fill: {
+            colors: ['#99277E', '#835640', '#835640'],
+            gradient: {
+              inverseColors: false,
+              shade: 'light',
+              type: "vertical",
+              opacityFrom: 0.85,
+              opacityTo: 0.55,
+              stops: [0, 100, 100, 100]
+            }
+          },
+          markers: {
+            size: 0
+          },
+          labels:lifecyclemanagement.name,
+          xaxis: {
+              type: 'category',
+              categories: []
+          },
+          yaxis: {
+            type: 'string',
+            labels: {
+              minWidth: 40,
+              formatter: function (value) {
+                return value + "%";
+              }
+            },
+            min: 0,
+            max: 100
+          },
+          tooltip: {
+            shared: true,
+            intersect: false,
+            theme: "dark",
+            y: {
+              formatter: function (value) {
+                return value.toFixed(2);
+              }
+            },
+          }
+        };
+        var options3 = {
+          series: [{
+            name: 'Community Wellbeing %' ,
+            type: 'bar',
+            data: communitywellbeing.communityExecution,
+          }, {
+            name: 'Average %',
+            type: 'line',
+            data: communitywellbeing.communityAverage,
+          },{
+            name: 'BC-ALL',
+            type: 'area',
+            data: communitywellbeing.communityAll,
+          }],
+
+          chart: {
+            id: 'community',
+            group: 'charts',
+            foreColor: 'gray',
+            width: '100%',
+            height: 450,
+            type: 'line',
+            stacked: false,
+            toolbar: {
+              show: true,
+              offsetX: 0,
+              offsetY: 0,
+              tools: {
+              download: true,
+              selection: false,
+              reset: false,
+              zoom: false,
+              zoomin: false,
+              zoomout: false,
+              pan: false
+              },
+            },
+
+          },
+          stroke: {
+            width: [0, 2, 5],
+            curve: 'smooth'
+          },
+          plotOptions: {
+            bar: {
+              columnWidth: '50%'
+            }
+          },
+          colors:['#E08330', '#835640', '#835640'],
+          fill: {
+            colors: ['#E08330', '#835640', '#835640'],
+            gradient: {
+              inverseColors: false,
+              shade: 'light',
+              type: "vertical",
+              opacityFrom: 0.85,
+              opacityTo: 0.55,
+              stops: [0, 100, 100, 100]
+            }
+          },
+          markers: {
+            size: 0
+          },
+          labels:communitywellbeing.name,
+          xaxis: {
+              type: 'category',
+              categories: []
+          },
+          yaxis: {
+            type: 'string',
+            labels: {
+              minWidth: 40,
+              formatter: function (value) {
+                return value + "%";
+              }
+            },
+            min: 0,
+            max: 100
+          },
+          tooltip: {
+            shared: true,
+            intersect: false,
+            theme: "dark",
+            y: {
+              formatter: function (value) {
+                return value.toFixed(2);
+              }
+            },
+          }
+        };
+        var options4 = {
+          series: [{
+            name: 'Working Conditions %' ,
+            type: 'bar',
+            data: workingconditions.condition,
+          }, {
+            name: 'Average %',
+            type: 'line',
+            data: workingconditions.workingAverage,
+          },{
+            name: 'BC-ALL',
+            type: 'area',
+            data: workingconditions.workingAll,
+          }],
+
+          chart: {
+            id: 'working',
+            group: 'charts',
+            foreColor: 'gray',
+            width: '100%',
+            height: 450,
+            type: 'line',
+            stacked: false,
+            toolbar: {
+              show: true,
+              offsetX: 0,
+              offsetY: 0,
+              tools: {
+              download: true,
+              selection: false,
+              reset: false,
+              zoom: false,
+              zoomin: false,
+              zoomout: false,
+              pan: false
+              },
+            },
+
+          },
+          stroke: {
+            width: [0, 2, 5],
+            curve: 'smooth'
+          },
+          plotOptions: {
+            bar: {
+              columnWidth: '50%'
+            }
+          },
+          colors:['#D23A2B', '#835640', '#835640'],
+          fill: {
+            colors: ['#D23A2B', '#835640', '#835640'],
+            gradient: {
+              inverseColors: false,
+              shade: 'light',
+              type: "vertical",
+              opacityFrom: 0.85,
+              opacityTo: 0.55,
+              stops: [0, 100, 100, 100]
+            }
+          },
+          markers: {
+            size: 0
+          },
+          labels:workingconditions.name,
+          xaxis: {
+              type: 'category',
+              categories: []
+          },
+          yaxis: {
+            type: 'string',
+            labels: {
+              minWidth: 40,
+              formatter: function (value) {
+                return value + "%";
+              }
+            },
+            min: 0,
+            max: 100
+          },
+          tooltip: {
+            shared: true,
+            intersect: false,
+            theme: "dark",
+            y: {
+              formatter: function (value) {
+                return value.toFixed(2);
+              }
+            },
+          }
+        };
+        var options5 = {
+          series: [{
+            name: 'Environmental Responsibility %' ,
+            type: 'bar',
+            data: environmental.eResponsibility,
+          }, {
+            name: 'Average %',
+            type: 'line',
+            data: environmental.eAverage,
+          },{
+            name: 'BC-ALL',
+            type: 'area',
+            data: environmental.fAll,
+          }],
+
+          chart: {
+            id: 'working',
+            group: 'charts',
+            foreColor: 'gray',
+            width: '100%',
+            height: 450,
+            type: 'line',
+            stacked: false,
+            toolbar: {
+              show: true,
+              offsetX: 0,
+              offsetY: 0,
+              tools: {
+              download: true,
+              selection: false,
+              reset: false,
+              zoom: false,
+              zoomin: false,
+              zoomout: false,
+              pan: false
+              },
+            },
+
+          },
+          stroke: {
+            width: [0, 2, 5],
+            curve: 'smooth'
+          },
+          plotOptions: {
+            bar: {
+              columnWidth: '50%'
+            }
+          },
+          colors:['#85B645', '#835640', '#835640'],
+          fill: {
+            colors: ['#85B645', '#835640', '#835640'],
+            gradient: {
+              inverseColors: false,
+              shade: 'light',
+              type: "vertical",
+              opacityFrom: 0.85,
+              opacityTo: 0.55,
+              stops: [0, 100, 100, 100]
+            }
+          },
+          markers: {
+            size: 0
+          },
+          labels:environmental.name,
+          xaxis: {
+              type: 'category',
+              categories: []
+          },
+          yaxis: {
+            type: 'string',
+            labels: {
+              minWidth: 40,
+              formatter: function (value) {
+                return value + "%";
+              }
+            },
+            min: 0,
+            max: 100
+          },
+          tooltip: {
+            shared: true,
+            intersect: false,
+            theme: "dark",
+            y: {
+              formatter: function (value) {
+                return value.toFixed(2);
+              }
+            },
+          }
+        };
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        var chart1 = new ApexCharts(document.querySelector("#chart1"), options1);
+        var chart2 = new ApexCharts(document.querySelector("#chart2"), options2);
+        var chart3 = new ApexCharts(document.querySelector("#chart3"), options3);
+        var chart4 = new ApexCharts(document.querySelector("#chart4"), options4);
+        var chart5 = new ApexCharts(document.querySelector("#chart5"), options5);
+        chart.render();
+        chart1.render();
+        chart2.render();
+        chart3.render();
+        chart4.render();
+        chart5.render();
+    </script>
 @endsection

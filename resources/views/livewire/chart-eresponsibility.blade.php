@@ -1,4 +1,8 @@
-<div class="bgrmi">
+<div class="bgrmi sm:w-4/12 w-full">
+    <div class="flex items-center space-x-3 px-4  ">
+        <img src="{{ asset('assets/leaf.png') }}" alt="" class="w-9">
+        <a href="#" class="text-gray-300 sm:text-2xl flex underline text-xl">Environmental Responsibility</a>
+    </div>
     <div id="chart2"></div>
 
 

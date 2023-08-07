@@ -1,4 +1,8 @@
-<div class="bgrmi">
+<div class="bgrmi w-fullx">
+    <div class="flex items-center space-x-3 px-4 ">
+        <img src="{{ asset('assets/handshake.png') }}" alt="" class="h-10">
+        <a href="#" class="text-gray-300 sm:text-2xl flex underline  text-xl">{{__('Bussines Conduct')}}</a>
+    </div>
     <div id="chart"></div>
 
 
