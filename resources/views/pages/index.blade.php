@@ -21,42 +21,42 @@
                 <div class="bgrmi  sm:w-4/12 w-full">
                     <div class="flex items-center space-x-3 px-4  ">
                         <img src="{{ asset('assets/Economicdevelopicon.png') }}" alt="" class="w-9">
-                        <a href="#" class="text-gray-300 sm:text-2xl flex underline text-xl">Economic Development</a>
+                        <a href="#" class="text-gray-300  flex underline text-xl">Economic Development</a>
                     </div>
                     <div id="chart"></div>
                 </div>
                 <div class="bgrmi sm:w-4/12 w-full">
                     <div class="flex items-center space-x-3 px-4  ">
                         <img src="{{ asset('assets/handshake.png') }}" alt="" class="w-9">
-                        <a href="#" class="text-gray-300 sm:text-2xl flex underline text-xl">Bussines Conduct</a>
+                        <a href="#" class="text-gray-300  flex underline text-xl">Bussines Conduct</a>
                     </div>
                     <div id="chart1"></div>
                 </div>
                 <div class="bgrmi sm:w-4/12 w-full">
                     <div class="flex items-center space-x-3 px-4  ">
                         <img src="{{ asset('assets/lifecycle.png') }}" alt="" class="w-9">
-                        <a href="#" class="text-gray-300 sm:text-2xl flex underline text-xl">Lifecycle Management</a>
+                        <a href="#" class="text-gray-300  flex underline text-xl">Lifecycle Management</a>
                     </div>
                     <div id="chart2"></div>
                 </div>
                 <div class="bgrmi sm:w-4/12 w-full">
                     <div class="flex items-center space-x-3 px-4  ">
                         <img src="{{ asset('assets/Communitywel.png') }}" alt="" class="w-9">
-                        <a href="#" class="text-gray-300 sm:text-2xl flex underline text-xl">Community Wellbeing</a>
+                        <a href="#" class="text-gray-300  flex underline text-xl">Community Wellbeing</a>
                     </div>
                     <div id="chart3"></div>
                 </div>
                 <div class="bgrmi sm:w-4/12 w-full">
                     <div class="flex items-center space-x-3 px-4  ">
                         <img src="{{ asset('assets/WorkingConditions.png') }}" alt="" class="w-9">
-                        <a href="#" class="text-gray-300 sm:text-2xl flex underline text-xl">Working Condition</a>
+                        <a href="#" class="text-gray-300  flex underline text-xl">Working Condition</a>
                     </div>
                     <div id="chart4"></div>
                 </div>
                 <div class="bgrmi sm:w-4/12 w-full">
                     <div class="flex items-center space-x-3 px-4  ">
                         <img src="{{ asset('assets/leaf.png') }}" alt="" class="w-9">
-                        <a href="#" class="text-gray-300 sm:text-2xl flex underline text-xl">Environmental Responsi</a>
+                        <a href="#" class="text-gray-300  flex underline text-xl">Environmental Responsi</a>
                     </div>
                     <div id="chart5"></div>
                 </div>
@@ -305,7 +305,7 @@
             group: 'charts',
             foreColor: 'gray',
             width: '100%',
-            height: 450,
+            height: 400,
             type: 'line',
             stacked: false,
             toolbar: {
@@ -336,14 +336,7 @@
           colors:['#2A63AB', '#835640', '#835640'],
           fill: {
             colors: ['#2A63AB', '#835640', '#835640'],
-            gradient: {
-              inverseColors: false,
-              shade: 'light',
-              type: "vertical",
-              opacityFrom: 0.85,
-              opacityTo: 0.55,
-              stops: [0, 100, 100, 100]
-            }
+
           },
           markers: {
             size: 0
@@ -358,7 +351,7 @@
             labels: {
               minWidth: 40,
               formatter: function (value) {
-                return value + "%";
+                return value + "";
               }
             },
             min: 0,
@@ -395,7 +388,7 @@
             group: 'charts',
             foreColor: 'gray',
             width: '100%',
-            height: 450,
+            height: 400,
             type: 'line',
             stacked: false,
             toolbar: {
@@ -426,14 +419,7 @@
           colors:['#865F47', '#85B645', '#85B645'],
           fill: {
             colors: ['#865F47', '#85B645', '#85B645'],
-            gradient: {
-              inverseColors: false,
-              shade: 'light',
-              type: "vertical",
-              opacityFrom: 0.85,
-              opacityTo: 0.55,
-              stops: [0, 100, 100, 100]
-            }
+
           },
           markers: {
             size: 0
@@ -448,7 +434,7 @@
             labels: {
               minWidth: 40,
               formatter: function (value) {
-                return value + "%";
+                return value + "";
               }
             },
             min: 0,
@@ -485,7 +471,7 @@
             group: 'charts',
             foreColor: 'gray',
             width: '100%',
-            height: 450,
+            height: 400,
             type: 'line',
             stacked: false,
             toolbar: {
@@ -516,14 +502,7 @@
           colors:['#99277E', '#835640', '#835640'],
           fill: {
             colors: ['#99277E', '#835640', '#835640'],
-            gradient: {
-              inverseColors: false,
-              shade: 'light',
-              type: "vertical",
-              opacityFrom: 0.85,
-              opacityTo: 0.55,
-              stops: [0, 100, 100, 100]
-            }
+
           },
           markers: {
             size: 0
@@ -538,7 +517,7 @@
             labels: {
               minWidth: 40,
               formatter: function (value) {
-                return value + "%";
+                return value + "";
               }
             },
             min: 0,
@@ -575,7 +554,7 @@
             group: 'charts',
             foreColor: 'gray',
             width: '100%',
-            height: 450,
+            height: 400,
             type: 'line',
             stacked: false,
             toolbar: {
@@ -606,14 +585,7 @@
           colors:['#E08330', '#835640', '#835640'],
           fill: {
             colors: ['#E08330', '#835640', '#835640'],
-            gradient: {
-              inverseColors: false,
-              shade: 'light',
-              type: "vertical",
-              opacityFrom: 0.85,
-              opacityTo: 0.55,
-              stops: [0, 100, 100, 100]
-            }
+
           },
           markers: {
             size: 0
@@ -628,7 +600,7 @@
             labels: {
               minWidth: 40,
               formatter: function (value) {
-                return value + "%";
+                return value + "";
               }
             },
             min: 0,
@@ -665,7 +637,7 @@
             group: 'charts',
             foreColor: 'gray',
             width: '100%',
-            height: 450,
+            height: 400,
             type: 'line',
             stacked: false,
             toolbar: {
@@ -696,14 +668,7 @@
           colors:['#D23A2B', '#835640', '#835640'],
           fill: {
             colors: ['#D23A2B', '#835640', '#835640'],
-            gradient: {
-              inverseColors: false,
-              shade: 'light',
-              type: "vertical",
-              opacityFrom: 0.85,
-              opacityTo: 0.55,
-              stops: [0, 100, 100, 100]
-            }
+
           },
           markers: {
             size: 0
@@ -718,7 +683,7 @@
             labels: {
               minWidth: 40,
               formatter: function (value) {
-                return value + "%";
+                return value + "";
               }
             },
             min: 0,
@@ -755,7 +720,7 @@
             group: 'charts',
             foreColor: 'gray',
             width: '100%',
-            height: 450,
+            height: 400,
             type: 'line',
             stacked: false,
             toolbar: {
@@ -786,14 +751,7 @@
           colors:['#85B645', '#835640', '#835640'],
           fill: {
             colors: ['#85B645', '#835640', '#835640'],
-            gradient: {
-              inverseColors: false,
-              shade: 'light',
-              type: "vertical",
-              opacityFrom: 0.85,
-              opacityTo: 0.55,
-              stops: [0, 100, 100, 100]
-            }
+
           },
           markers: {
             size: 0
@@ -808,7 +766,7 @@
             labels: {
               minWidth: 40,
               formatter: function (value) {
-                return value + "%";
+                return value + "";
               }
             },
             min: 0,
