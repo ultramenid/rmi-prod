@@ -84,6 +84,7 @@ class HomeController extends Controller
     }
 
     public function index(){
+        $currenturl = url()->current();
         $dataEconomicDevelopment = $this->getEconomicDevelopment();
         $dataBussinessConduct = $this->getBussinesConduct();
         $dataLifecyclemanagement = $this->getLifecyclemanagement();
@@ -93,10 +94,11 @@ class HomeController extends Controller
         $resultCode = $this->getCode();
         $title = 'Index - Kinerja Tambang Indonesia';
         $nav = 'index';
-        return view('pages.index', compact('title','resultCode', 'nav', 'dataEconomicDevelopment', 'dataBussinessConduct', 'dataLifecyclemanagement', 'dataCommunitywellbeing','dataWorkingconditions', 'dataEnviromental'));
+        return view('pages.index', compact('currenturl','title','resultCode', 'nav', 'dataEconomicDevelopment', 'dataBussinessConduct', 'dataLifecyclemanagement', 'dataCommunitywellbeing','dataWorkingconditions', 'dataEnviromental'));
     }
 
     public function new(){
+
         $dataEconomicDevelopment = $this->getEconomicDevelopment();
         $dataBussinessConduct = $this->getBussinesConduct();
         $dataLifecyclemanagement = $this->getLifecyclemanagement();
