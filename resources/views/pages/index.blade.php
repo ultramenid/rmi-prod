@@ -21,42 +21,42 @@
                 <div class="bgrmi  sm:w-4/12 w-full">
                     <div class="flex items-center space-x-3 px-4  ">
                         <img src="{{ asset('assets/Economicdevelopicon.png') }}" alt="" class="w-9">
-                        <a href="#" class="text-gray-300  flex underline text-xl">Economic Development</a>
+                        <a href="#" class="text-gray-300  flex underline text-xl">{{__('Economic Development')}}</a>
                     </div>
                     <div id="chart"></div>
                 </div>
                 <div class="bgrmi sm:w-4/12 w-full">
                     <div class="flex items-center space-x-3 px-4  ">
                         <img src="{{ asset('assets/handshake.png') }}" alt="" class="w-9">
-                        <a href="#" class="text-gray-300  flex underline text-xl">Bussines Conduct</a>
+                        <a href="#" class="text-gray-300  flex underline text-xl">{{__('Bussines Conduct')}}</a>
                     </div>
                     <div id="chart1"></div>
                 </div>
                 <div class="bgrmi sm:w-4/12 w-full">
                     <div class="flex items-center space-x-3 px-4  ">
                         <img src="{{ asset('assets/lifecycle.png') }}" alt="" class="w-9">
-                        <a href="#" class="text-gray-300  flex underline text-xl">Lifecycle Management</a>
+                        <a href="#" class="text-gray-300  flex underline text-xl">{{__('Lifecycle Management')}}</a>
                     </div>
                     <div id="chart2"></div>
                 </div>
                 <div class="bgrmi sm:w-4/12 w-full mt-12">
                     <div class="flex items-center space-x-3 px-4  ">
                         <img src="{{ asset('assets/Communitywel.png') }}" alt="" class="w-9">
-                        <a href="#" class="text-gray-300  flex underline text-xl">Community Wellbeing</a>
+                        <a href="#" class="text-gray-300  flex underline text-xl">{{__('Community Wellbeing')}}</a>
                     </div>
                     <div id="chart3"></div>
                 </div>
                 <div class="bgrmi sm:w-4/12 w-full mt-12">
                     <div class="flex items-center space-x-3 px-4  ">
                         <img src="{{ asset('assets/WorkingConditions.png') }}" alt="" class="w-9">
-                        <a href="#" class="text-gray-300  flex underline text-xl">Working Condition</a>
+                        <a href="#" class="text-gray-300  flex underline text-xl">{{__('Working Conditions')}}</a>
                     </div>
                     <div id="chart4"></div>
                 </div>
                 <div class="bgrmi sm:w-4/12 w-full mt-12">
                     <div class="flex items-center space-x-3 px-4  ">
                         <img src="{{ asset('assets/leaf.png') }}" alt="" class="w-9">
-                        <a href="#" class="text-gray-300  flex underline text-xl">Environmental Responsi</a>
+                        <a href="#" class="text-gray-300  flex underline text-xl">{{__('Environmental Responsibility')}}</a>
                     </div>
                     <div id="chart5"></div>
                 </div>

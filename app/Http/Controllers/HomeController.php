@@ -95,4 +95,18 @@ class HomeController extends Controller
         $nav = 'index';
         return view('pages.index', compact('title','resultCode', 'nav', 'dataEconomicDevelopment', 'dataBussinessConduct', 'dataLifecyclemanagement', 'dataCommunitywellbeing','dataWorkingconditions', 'dataEnviromental'));
     }
+
+    public function new(){
+        $dataEconomicDevelopment = $this->getEconomicDevelopment();
+        $dataBussinessConduct = $this->getBussinesConduct();
+        $dataLifecyclemanagement = $this->getLifecyclemanagement();
+        $dataCommunitywellbeing = $this->getCommunityWellbeing();
+        $dataWorkingconditions = $this->getWorkingConditions();
+        $dataEnviromental = $this->getEnviromentalResponsibility();
+        $resultCode = $this->getCode();
+        $title = 'Index - Kinerja Tambang Indonesia';
+        $nav = 'index';
+        return view('pages.new', compact('title','resultCode', 'nav', 'dataEconomicDevelopment', 'dataBussinessConduct', 'dataLifecyclemanagement', 'dataCommunitywellbeing','dataWorkingconditions', 'dataEnviromental'));
+    }
+
 }

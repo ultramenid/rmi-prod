@@ -39,6 +39,7 @@ Route::group(['prefix' => '{lang}'], function () {
     Route::get('/about', [AboutController::class, 'index'])->name('about');
     Route::get('/corporateprofile', [CorporateProfileController::class, 'index'])->name('corporateprofile');
     Route::get('/corporate/{id}', [CorporateProfileController::class, 'detail'])->name('corporatedetail');
+    Route::get('/new', [HomeController::class, 'new'])->name('new');
 });
 
 
