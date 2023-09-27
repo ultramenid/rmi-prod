@@ -17,8 +17,28 @@ class EditCorporatesComponent extends Component{
     $communityExecution, $communityAverage, $communityAll,
     $condition, $workingAverage, $workingAll,
     $responsibility, $fAverage, $fAll,
-
     $groupname, $location;
+    public $isCategory, $categories = [];
+
+    public function toogleCategory(){
+        $this->isCategory = true;
+    }
+
+    public function closeCategory(){
+        $this->isCategory = false;
+    }
+
+    public function deleteCategory($id){
+        unset($this->categories[$id]);
+    }
+
+    public function setCategory($cat){
+        if (!in_array($cat, $this->categories)) {
+            array_push($this->categories, $cat);
+        }
+        // $this->choosepelaku = $pelaku;
+        $this->category = '';
+    }
 
     public function mount($idcorporates){
         $this->idcorporates = $idcorporates;
@@ -56,8 +76,12 @@ class EditCorporatesComponent extends Component{
         $this->bAll = $data->bAll;
         $this->responsibility = $data->eResponsibility;
         $this->fAverage = $data->eAverage;
-        $this->category = $data->kategori;
+        $this->categories = explode(',', $data->kategori);
         $this->fAll = $data->fAll;
+    }
+
+    public function getstringCategory(){
+        return implode(',', $this->categories);
     }
 
     public function updateCorporate(){
@@ -65,7 +89,7 @@ class EditCorporatesComponent extends Component{
        if($this->setValidation()){
         DB::table('corporateprofilepages')->where('id', $this->idcorporates)->update([
             'name'=> $this->corporatename,
-            'kategori' => $this->category,
+            'kategori' => $this->getstringCategory(),
             'shortname' => $this->groupname,
             'lokasi' => $this->location,
             'overviewenglish' => $this->overviewenglish,
@@ -123,7 +147,7 @@ class EditCorporatesComponent extends Component{
             $type = 'error'; //error, success
             $this->emit('toast',$message, $type);
             return;
-        }elseif($this->category == ''){
+        }elseif($this->categories == ''){
             $message = 'Corporate Category is required';
             $type = 'error'; //error, success
             $this->emit('toast',$message, $type);

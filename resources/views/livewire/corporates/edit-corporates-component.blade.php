@@ -197,19 +197,38 @@
 
                 <div class="mb-6">
                     <label class="text-newgray-900 dark:text-gray-300">Corporate Category:</label>
-                    {{-- <input type="text" class=" " id="corporatename" wire:model.defer='corporatename' placeholder="Name. . . "> --}}
-                    <select name="category" wire:model="category" class="w-full border border-gray-300 py-1 px-4 focus:outline-none">
-                        <option value="">Category...</option>
-                        <option value="nikel">Nikel</option>
-                        <option value="emas">Emas</option>
-                        <option value="batubara">Batubara</option>
-                        <option value="pasirbesi">Pasir Besi</option>
-                        <option value="timah">Timah</option>
-                        <option value="bauksit">Bauksit</option>
-                        <option value="tembaga">Tembaga</option>
-                        <option value="perak">Perak</option>
-                        <option value="mangan">Mangan</option>
-                    </select>
+                    <label class="w-full">
+                        <div wire:click='toogleCategory'    type="text" name="" id="" class="w-full mb-2 bg-gray-100  text-gray-700     border  py-1  px-4 focus:outline-none border-gray-300 dark:border-opacity-20" >  {{$category}}
+                            @foreach ($categories as $key => $value)
+                            <a class="inline-flex justify-between   bg-black text-white  rounded py-1 px-2 focus:outline-none items-center">{{$value}}
+                                <svg wire:click='deleteCategory({{$key}})' class="ml-1 h-4 w-4 cursor-pointer" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            </svg></a>
+                        @endforeach
+                        </div>
+                    </label>
+                    <div class="flex flex-wrap space-x-4">
+
+                    </div>
+                    @if ($isCategory)
+                    <div class="shadow px-4 py-4 flex flex-col mt-2  bg-black relative "  >
+                            <div class="relative py-4">
+                                <div class="absolute top-0 right-0 text-white">
+                                    <svg wire:click='closeCategory' xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 cursor-pointer" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                  </svg></div>
+                            </div>
+                            <a class=" text-white py-1 hover:bg-gray-700 px-4 cursor-pointer" wire:click="setCategory('nikel')" >Nikel</a>
+                            <a class=" text-white py-1 hover:bg-gray-700 px-4 cursor-pointer" wire:click="setCategory('emas')" >Emas</a>
+                            <a class=" text-white py-1 hover:bg-gray-700 px-4 cursor-pointer" wire:click="setCategory('batubara')" >Batubara</a>
+                            <a class=" text-white py-1 hover:bg-gray-700 px-4 cursor-pointer" wire:click="setCategory('pasirbesi')" >Pasir Besi</a>
+                            <a class=" text-white py-1 hover:bg-gray-700 px-4 cursor-pointer" wire:click="setCategory('timah')" >Timah</a>
+                            <a class=" text-white py-1 hover:bg-gray-700 px-4 cursor-pointer" wire:click="setCategory('bauksit')" >Bauksit</a>
+                            <a class=" text-white py-1 hover:bg-gray-700 px-4 cursor-pointer" wire:click="setCategory('tembaga')" >Tembaga</a>
+                            <a class=" text-white py-1 hover:bg-gray-700 px-4 cursor-pointer" wire:click="setCategory('perak')" >Perak</a>
+                            <a class=" text-white py-1 hover:bg-gray-700 px-4 cursor-pointer" wire:click="setCategory('mangan')" >Mangan</a>
+                    </div>
+                    @endif
                 </div>
 
                 <div class="mb-6 flex flex-col">

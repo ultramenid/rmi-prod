@@ -9,23 +9,46 @@ use Livewire\Component;
 class CreateCorporatesComponent extends Component{
     public $sidenav = 'overview';
     public $overview = true, $operationalrea = false, $financial = false, $corporatenetwork = false, $spotlight = false;
-    public $category, $overviewenglish, $overviewindonesia, $operationenglish, $operationindonesia, $financialenglish, $ownershipenglish, $ownershipindonesia, $financialindonesia, $corporatenetworkenglish, $corporatenetworkindonesia, $corporatename, $spotlightenglish, $spotlightindonesia,
+    public $category = '...', $overviewenglish, $overviewindonesia, $operationenglish, $operationindonesia, $financialenglish, $ownershipenglish, $ownershipindonesia, $financialindonesia, $corporatenetworkenglish, $corporatenetworkindonesia, $corporatename, $spotlightenglish, $spotlightindonesia,
     $development, $developmentAverage, $developmentAll,
     $execution, $bAverage, $bAll,
     $management, $managementAverage, $managementAll,
     $communityExecution, $communityAverage, $communityAll,
     $condition, $workingAverage, $workingAll,
     $responsibility, $fAverage, $fAll,
-
     $groupname, $location;
+    public $isCategory, $categories = [];
 
+    public function toogleCategory(){
+        $this->isCategory = true;
+    }
+
+    public function closeCategory(){
+        $this->isCategory = false;
+    }
+
+    public function deleteCategory($id){
+        unset($this->categories[$id]);
+    }
+
+    public function setCategory($cat){
+        if (!in_array($cat, $this->categories)) {
+            array_push($this->categories, $cat);
+        }
+        // $this->choosepelaku = $pelaku;
+        $this->category = '';
+    }
+
+    public function getstringCategory(){
+        return implode(',', $this->categories);
+    }
 
     public function storeCorporate(){
 
         if($this->setValidation()){
             DB::table('corporateprofilepages')->insert([
                 'name'=> $this->corporatename,
-                'kategori' => $this->category,
+                'kategori' => $this->getstringCategory(),
                 'shortname' => $this->groupname,
                 'lokasi' => $this->location,
                 'overviewenglish' => $this->overviewenglish,
@@ -80,7 +103,7 @@ class CreateCorporatesComponent extends Component{
             $type = 'error'; //error, success
             $this->emit('toast',$message, $type);
             return;
-        }elseif($this->category == ''){
+        }elseif($this->categories == ''){
             $message = 'Corporate Category is required';
             $type = 'error'; //error, success
             $this->emit('toast',$message, $type);
