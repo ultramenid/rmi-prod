@@ -189,6 +189,24 @@
                     <label class="text-newgray-900 dark:text-gray-300">Corporate Name:</label>
                     <input type="text" class=" w-full border border-gray-300 py-1 px-4 focus:outline-none" id="corporatename" wire:model.defer='corporatename' placeholder="Name. . . ">
                 </div>
+
+                <div class="mb-6">
+                    <label class="text-newgray-900 dark:text-gray-300">Corporate Category:</label>
+                    {{-- <input type="text" class=" " id="corporatename" wire:model.defer='corporatename' placeholder="Name. . . "> --}}
+                    <select name="category" wire:model="category" class="w-full border border-gray-300 py-1 px-4 focus:outline-none">
+                        <option value="">Category...</option>
+                        <option value="nikel">Nikel</option>
+                        <option value="emas">Emas</option>
+                        <option value="batubara">Batubara</option>
+                        <option value="pasirbesi">Pasir Besi</option>
+                        <option value="timah">Timah</option>
+                        <option value="bauksit">Bauksit</option>
+                        <option value="tembaga">Tembaga</option>
+                        <option value="perak">Perak</option>
+                        <option value="mangan">Mangan</option>
+                    </select>
+                </div>
+
                 <div class="mb-6">
                     <label class="text-newgray-900 dark:text-gray-300">Group Name:</label>
                     <input type="text" class="w-full border border-gray-300 py-1 px-4 focus:outline-none" id="groupname" wire:model.defer='groupname' placeholder="Group Name. . . ">

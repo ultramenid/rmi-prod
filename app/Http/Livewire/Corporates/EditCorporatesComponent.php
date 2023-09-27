@@ -9,7 +9,7 @@ use Livewire\Component;
 class EditCorporatesComponent extends Component{
     public $idcorporates;
     public $sidenav = 'overview';
-    public $overview = true, $operationalrea = false, $financial = false, $corporatenetwork = false, $spotlight = false;
+    public $category, $overview = true, $operationalrea = false, $financial = false, $corporatenetwork = false, $spotlight = false;
     public $overviewenglish, $overviewindonesia, $operationenglish, $operationindonesia, $financialenglish, $ownershipenglish, $ownershipindonesia, $financialindonesia, $corporatenetworkenglish, $corporatenetworkindonesia, $corporatename, $spotlightenglish, $spotlightindonesia,
     $development, $developmentAverage, $developmentAll,
     $execution, $bAverage, $bAll,
@@ -56,6 +56,7 @@ class EditCorporatesComponent extends Component{
         $this->bAll = $data->bAll;
         $this->responsibility = $data->eResponsibility;
         $this->fAverage = $data->eAverage;
+        $this->category = $data->kategori;
         $this->fAll = $data->fAll;
     }
 
@@ -64,6 +65,7 @@ class EditCorporatesComponent extends Component{
        if($this->setValidation()){
         DB::table('corporateprofilepages')->where('id', $this->idcorporates)->update([
             'name'=> $this->corporatename,
+            'kategori' => $this->category,
             'shortname' => $this->groupname,
             'lokasi' => $this->location,
             'overviewenglish' => $this->overviewenglish,
@@ -118,6 +120,11 @@ class EditCorporatesComponent extends Component{
             return;
         }elseif($this->overviewenglish == ''){
             $message = 'Overview  content english is required';
+            $type = 'error'; //error, success
+            $this->emit('toast',$message, $type);
+            return;
+        }elseif($this->category == ''){
+            $message = 'Corporate Category is required';
             $type = 'error'; //error, success
             $this->emit('toast',$message, $type);
             return;

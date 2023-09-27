@@ -9,7 +9,7 @@ use Livewire\Component;
 class CreateCorporatesComponent extends Component{
     public $sidenav = 'overview';
     public $overview = true, $operationalrea = false, $financial = false, $corporatenetwork = false, $spotlight = false;
-    public $overviewenglish, $overviewindonesia, $operationenglish, $operationindonesia, $financialenglish, $ownershipenglish, $ownershipindonesia, $financialindonesia, $corporatenetworkenglish, $corporatenetworkindonesia, $corporatename, $spotlightenglish, $spotlightindonesia,
+    public $category, $overviewenglish, $overviewindonesia, $operationenglish, $operationindonesia, $financialenglish, $ownershipenglish, $ownershipindonesia, $financialindonesia, $corporatenetworkenglish, $corporatenetworkindonesia, $corporatename, $spotlightenglish, $spotlightindonesia,
     $development, $developmentAverage, $developmentAll,
     $execution, $bAverage, $bAll,
     $management, $managementAverage, $managementAll,
@@ -25,6 +25,7 @@ class CreateCorporatesComponent extends Component{
         if($this->setValidation()){
             DB::table('corporateprofilepages')->insert([
                 'name'=> $this->corporatename,
+                'kategori' => $this->category,
                 'shortname' => $this->groupname,
                 'lokasi' => $this->location,
                 'overviewenglish' => $this->overviewenglish,
@@ -76,6 +77,11 @@ class CreateCorporatesComponent extends Component{
     public function setValidation(){
         if($this->corporatename == ''){
             $message = 'Corporate name required';
+            $type = 'error'; //error, success
+            $this->emit('toast',$message, $type);
+            return;
+        }elseif($this->category == ''){
+            $message = 'Corporate Category is required';
             $type = 'error'; //error, success
             $this->emit('toast',$message, $type);
             return;
