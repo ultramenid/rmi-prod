@@ -235,10 +235,10 @@
                     <a href="{{$currenturl}}/corporate/19">ANTAM</a>
                 </div>
                 <div id="data3" style="background-color: #111725;"  class=" hover:bg-gray-500 text-yellow-100 font-bold hover:underscore lg:w-6/12 w-full items-center flex justify-center px-2 border border-gray-800 cursor-pointer">
-                    <a href="{{$currenturl}}/corporate/20">BRMS</a>
+                    <a href="{{$currenturl}}/corporate/21">BRMS</a>
                 </div>
                 <div id="data4" style="background-color: #111725;"  class=" hover:bg-gray-500 text-yellow-100 font-bold hover:underscore lg:w-6/12 w-full items-center flex justify-center px-2 border border-gray-800 cursor-pointer">
-                    <a href="{{$currenturl}}/corporate/21">BUKIT ASAM</a>
+                    <a href="{{$currenturl}}/corporate/20">BUKIT ASAM</a>
                 </div>
                 <div id="data5" style="background-color: #111725;"  class=" hover:bg-gray-500 text-yellow-100 font-bold hover:underscore lg:w-6/12 w-full items-center flex justify-center px-2 border border-gray-800 cursor-pointer">
                     <a href="{{$currenturl}}/corporate/22">CITA</a>
