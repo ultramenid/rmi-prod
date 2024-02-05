@@ -1,275 +1,230 @@
-<div class="grid grid-cols-12" x-data="methodology" >
-    @include('partials.skeletonMethodology')
+<div class="grid grid-cols-12 relative top-0" x-data="{sidebar: 'intro', tema: '', open:false, dropdown:false}" >
+    {{-- @include('partials.skeletonMethodology') --}}
     <ul class=" sm:space-y-2  space-y-0 sm:space-x-0 mb-6 space-x-3 sm:col-span-4 col-span-12 subpixel-antialiased sm:flex sm:flex-col flex flex-row ">
         <li class="">
-                <a :class="intro ? 'text-red-700 underline' : 'text-gray-300 hover:underline'"  class=" font-bold    uppercase cursor-pointer"
-                @click="toogleIntro">
-                    Introduction
-                </a>
+                <button
+                :class="{ 'text-red-700 underline' : sidebar === 'intro' }"
+                @click=" sidebar= 'intro', tema=''"
+                class="text-gray-300 hover:underline font-bold    uppercase cursor-pointer">
+                Introduction
+                </button>
         </li>
 
         {{-- thematic desktop --}}
         <li class="sm:block hidden">
-            <a x-show="thematic"  x-cloak style="display: none !important"  class=" font-bold  text-gray-300   uppercase " >
+            <button
+
+                class="text-gray-300  font-bold uppercase">
                 {{__('Thematic')}}
-            </a>
-            <ul class="pl-6  mt-2 ">
+            </button>
+            <ul class="pl-6  mt-2 " >
                 <li class= "text-sm  ">
-                    <div :class="economicdev ? 'text-red-700 underline' : 'text-gray-300 hover:underline'"  class=" font-bold     uppercase cursor-pointer"
-                    @click="toogleEconomicdev">
-                        a. {{__('Economic Development')}}</a>
-                    </div>
+                    <button
+                        :class="{ 'text-red-700 underline' : tema === 'economic' }"
+                        @click=" tema= 'economic', sidebar=''"
+                        class="text-gray-300 hover:underline font-bold    uppercase cursor-pointer">
+                        a. {{__('Economic Development')}}
+                    </button>
 
-                    <div :class="qframework1 ? 'text-red-700 underline' : 'text-gray-300 hover:underline'"  class="pl-6  text-sm mb-3  cursor-pointer"
-                    @click="toogleqFramework1">
+                    <button
+                        :class="{ 'text-red-700 underline' : tema === 'eddescription' }"
+                        @click=" tema= 'eddescription', sidebar=''"
+                        class="text-gray-300 hover:underline font-bold    pl-6  text-sm mb-3   cursor-pointer">
                         Criteria, metric question, and scoring framework
-                    </div>
-
+                    </button>
                 </li>
-
-                <li class="text-sm  ">
-                    <div :class="bConduct ? 'text-red-700 underline' : 'text-gray-300 hover:underline'"  class=" font-bold     uppercase cursor-pointer"
-                    @click="tooglebConduct">
+                <li class= "text-sm  ">
+                    <button
+                        :class="{ 'text-red-700 underline' : tema === 'bussinesconduct' }"
+                        @click=" tema= 'bussinesconduct', sidebar=''"
+                        class="text-gray-300 hover:underline font-bold    uppercase cursor-pointer">
                         b. {{__('Business Conduct')}}</a>
-                    </div>
+                    </button>
 
-                    <div :class="qframework2 ? 'text-red-700 underline' : 'text-gray-300 hover:underline'"  class="pl-6  text-sm mb-3  cursor-pointer"
-                    @click="toogleqFramework2">
+                    <button
+                        :class="{ 'text-red-700 underline' : tema === 'bcdescription' }"
+                        @click=" tema= 'bcdescription', sidebar=''"
+                        class="text-gray-300 hover:underline font-bold    pl-6  text-sm mb-3   cursor-pointer">
                         Criteria, metric question, and scoring framework
-                    </div>
+                    </button>
                 </li>
-                <li class="text-gray-300 text-sm  ">
 
-                    <div :class="lManagement ? 'text-red-700 underline' : 'text-gray-300 hover:underline'"  class=" font-bold     uppercase cursor-pointer"
-                    @click="tooglelManagement">
+                <li class= "text-sm  ">
+                    <button
+                        :class="{ 'text-red-700 underline' : tema === 'livecyclemanagement' }"
+                        @click=" tema= 'livecyclemanagement', sidebar=''"
+                        class="text-gray-300 hover:underline font-bold    uppercase cursor-pointer">
                         c. {{__('Lifecycle Management')}}</a>
-                    </div>
+                    </button>
 
-                    <div :class="qframework3 ? 'text-red-700 underline' : 'text-gray-300 hover:underline'"  class="pl-6  text-sm mb-3  cursor-pointer"
-                    @click="toogleqFramework3">
+                    <button
+                        :class="{ 'text-red-700 underline' : tema === 'lmdescription' }"
+                        @click=" tema= 'lmdescription', sidebar=''"
+                        class="text-gray-300 hover:underline font-bold    pl-6  text-sm mb-3   cursor-pointer">
                         Criteria, metric question, and scoring framework
-                    </div>
+                    </button>
                 </li>
-                <li class="text-gray-300 text-sm  ">
 
-                    <div :class="cWellbeing ? 'text-red-700 underline' : 'text-gray-300 hover:underline'"  class=" font-bold     uppercase cursor-pointer"
-                    @click="tooglecWellbeing">
+                <li class= "text-sm  ">
+                    <button
+                        :class="{ 'text-red-700 underline' : tema === 'communitywellbeuing' }"
+                        @click=" tema= 'communitywellbeuing', sidebar=''"
+                        class="text-gray-300 hover:underline font-bold    uppercase cursor-pointer">
                         d. {{__('Community Wellbeing')}}</a>
-                    </div>
+                    </button>
 
-                    <div :class="qframework4 ? 'text-red-700 underline' : 'text-gray-300 hover:underline'"  class="pl-6  text-sm mb-3  cursor-pointer"
-                    @click="toogleqFramework4">
+                    <button
+                        :class="{ 'text-red-700 underline' : tema === 'cwdescription' }"
+                        @click=" tema= 'cwdescription', sidebar=''"
+                        class="text-gray-300 hover:underline font-bold    pl-6  text-sm mb-3   cursor-pointer">
                         Criteria, metric question, and scoring framework
-                    </div>
+                    </button>
                 </li>
-                <li class="text-gray-300 text-sm  ">
-                    <div :class="wCondition ? 'text-red-700 underline' : 'text-gray-300 hover:underline'"  class=" font-bold     uppercase cursor-pointer"
-                    @click="tooglewCondition">
+
+                <li class= "text-sm  ">
+                    <button
+                        :class="{ 'text-red-700 underline' : tema === 'workingcondition' }"
+                        @click=" tema= 'workingcondition', sidebar=''"
+                        class="text-gray-300 hover:underline font-bold    uppercase cursor-pointer">
                         e. {{__('Working Conditions')}}</a>
-                    </div>
+                    </button>
 
-                    <div :class="qframework5 ? 'text-red-700 underline' : 'text-gray-300 hover:underline'"  class="pl-6  text-sm mb-3  cursor-pointer"
-                    @click="toogleqFramework5">
+                    <button
+                        :class="{ 'text-red-700 underline' : tema === 'wcdescription' }"
+                        @click=" tema= 'wcdescription', sidebar=''"
+                        class="text-gray-300 hover:underline font-bold    pl-6  text-sm mb-3   cursor-pointer">
                         Criteria, metric question, and scoring framework
-                    </div>
+                    </button>
                 </li>
-                <li class="text-gray-300 text-sm  ">
-                    <div :class="eResponsibility ? 'text-red-700 underline' : 'text-gray-300 hover:underline'"  class=" font-bold     uppercase cursor-pointer"
-                    @click="toogleeResponsibility">
+
+                <li class= "text-sm  ">
+                    <button
+                        :class="{ 'text-red-700 underline' : tema === 'environmentalresponsibility' }"
+                        @click=" tema= 'environmentalresponsibility', sidebar=''"
+                        class="text-gray-300 hover:underline font-bold    uppercase cursor-pointer">
                         f. {{__('Environmental Responsibility')}}</a>
-                    </div>
+                    </button>
 
-                    <div :class="qframework6 ? 'text-red-700 underline' : 'text-gray-300 hover:underline'"  class="pl-6  text-sm mb-3  cursor-pointer"
-                    @click="toogleqFramework6">
+                    <button
+                        :class="{ 'text-red-700 underline' : tema === 'erdescription' }"
+                        @click=" tema= 'erdescription', sidebar=''"
+                        class="text-gray-300 hover:underline font-bold    pl-6  text-sm mb-3   cursor-pointer">
                         Criteria, metric question, and scoring framework
-                    </div>
+                    </button>
                 </li>
-
 
             </ul>
         </li>
 
         {{-- toogle thematic mobile --}}
-            <div class="flex">
-                <template x-if="colorthematic">
-                    <a x-show="thematic" @click="thematicDropdown = ! thematicDropdown"  class=" font-bold underline  text-red-700  uppercase  items-center sm:hidden inline-flex" >
-                        {{__('Thematic')}}
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                          </svg>
-                    </a>
-                </template>
-                <template x-if="!colorthematic">
-                    <a x-show="thematic" @click="thematicDropdown = ! thematicDropdown"  class=" font-bold  text-gray-300  uppercase  items-center sm:hidden inline-flex" >
-                        {{__('Thematic')}}
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                          </svg>
-                    </a>
-                </template>
-                {{-- <a x-show="thematic" @click="thematicDropdown = ! thematicDropdown"  class=" font-bold  text-gray-300   uppercase  items-center sm:hidden inline-flex" >
-                    {{__('Thematic')}}
-                    <template x-if="colorthematic">
-                        <script>console.log('hi')</script>
-                    </template>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                      </svg>
-                </a> --}}
-            </div>
+        <button @click="open = !open, dropdown= !dropdown"
+            :class="{ 'text-red-700 underline' : sidebar === 'thematic' }"
+            class="flex flex-row items-center text-gray-300 hover:underline    uppercase cursor-pointer sm:hidden ">
+            <a>{{__('Thematic')}}</a>
+          <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}" class="inline w-4 h-4 items-center mt-1 ml-1 transition-transform duration-200 transform "><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+        </button>
+
     </ul>
 
-    {{-- thematic mobile --}}
-    <div class="w-full bg-black col-span-12 -mt-6 mb-2 rounded sm:hidden block" x-show="thematicDropdown" x-cloak style="display: none !important" x-transition @click.away="thematicDropdown = false">
+ {{-- thematic mobile --}}
+    <div class="w-full  bg-black col-span-12 -mt-6 mb-2 rounded sm:hidden block" x-show="dropdown" x-cloak style="display: none !important" x-transition @click.away="dropdown = false">
         <ul class="pl-6  mt-2 ">
-            <li class= "text-sm  ">
-                <template x-if="economicdev">
-                    <a class="uppercase underline text-red-700 cursor-pointer"
-                    @click="toogleEconomicdev"
-                    >a. {{__('Economic Development')}}</a>
-                </template>
-                <template x-if="!economicdev">
-                    <a class="uppercase hover:underline text-gray-300  cursor-pointer"
-                    @click="toogleEconomicdev"
-                    >a. {{__('Economic Development')}}</a>
-                </template>
-                <template x-if="qframework1">
-                    <p class="pl-6 text-red-700 text-sm mb-3 underline cursor-pointer"
-                    @click="toogleqFramework1"
-                    >Criteria, metric question, and scoring framework
-                    </p>
-                </template>
-                <template x-if="!qframework1">
-                    <p class="pl-6 text-gray-300 text-sm mb-3 hover:underline cursor-pointer"
-                    @click="toogleqFramework1"
-                    >Criteria, metric question, and scoring framework
-                    </p>
-                </template>
+            <li class= "">
+                <button
+                    :class="{ 'text-red-700 underline' : tema === 'economic' }"
+                    @click=" tema= 'economic', sidebar='thematic'"
+                    class="text-gray-300 hover:underline font-bold text-sm   uppercase cursor-pointer">
+                    a. {{__('Economic Development')}}
+                </button>
 
+                <button
+                    :class="{ 'text-red-700 underline' : tema === 'eddescription' }"
+                    @click=" tema= 'eddescription', sidebar='thematic'"
+                    class="text-gray-300 hover:underline font-bold pl-4 text-xs mb-3   cursor-pointer">
+                    Criteria, metric question, and scoring framework
+                </button>
             </li>
 
-            <li class="text-sm  ">
-                <template x-if="bConduct">
-                    <a class="uppercase underline text-red-700 cursor-pointer"
-                    @click="tooglebConduct"
-                    >b. {{__('Business Conduct')}}</a>
-                </template>
-                <template x-if="!bConduct">
-                    <a class="uppercase hover:underline text-gray-300  cursor-pointer"
-                    @click="tooglebConduct"
-                    >b. {{__('Business Conduct')}}</a>
-                </template>
-                <template x-if="qframework2">
-                    <p class="pl-6 text-red-700 text-sm mb-3 underline cursor-pointer"
-                    @click="toogleqFramework2"
-                    >Criteria, metric question, and scoring framework
-                    </p>
-                </template>
-                <template x-if="!qframework2">
-                    <p class="pl-6 text-gray-300 text-sm mb-3 hover:underline cursor-pointer"
-                    @click="toogleqFramework2"
-                    >Criteria, metric question, and scoring framework
-                    </p>
-                </template>
 
-                {{-- <a class="uppercase">b. </a> --}}
-                {{-- <p class="pl-6 text-gray-300 text-sm mb-3">Criteria, metric question, and scoring framework</p> --}}
+            <li class= "">
+                <button
+                    :class="{ 'text-red-700 underline' : tema === 'bussinesconduct' }"
+                    @click=" tema= 'bussinesconduct', sidebar='thematic'"
+                    class="text-gray-300 hover:underline font-bold text-sm     uppercase cursor-pointer">
+                    b. {{__('Business Conduct')}}</a>
+                </button>
+
+                <button
+                    :class="{ 'text-red-700 underline' : tema === 'bcdescription' }"
+                    @click=" tema= 'bcdescription', sidebar='thematic'"
+                    class="text-gray-300 hover:underline font-bold text-xs   pl-4  mb-3   cursor-pointer">
+                    Criteria, metric question, and scoring framework
+                </button>
             </li>
-            <li class="text-gray-300 text-sm  ">
-                <template x-if="lManagement">
-                    <a class="uppercase underline text-red-700 cursor-pointer"
-                    @click="tooglelManagement"
-                    >c. {{__('Lifecycle Management')}}</a>
-                </template>
-                <template x-if="!lManagement">
-                    <a class="uppercase hover:underline text-gray-300  cursor-pointer"
-                    @click="tooglelManagement"
-                    >c. {{__('Lifecycle Management')}}</a>
-                </template>
-                <template x-if="qframework3">
-                    <p class="pl-6 text-red-700 text-sm mb-3 underline cursor-pointer"
-                    @click="toogleqFramework3"
-                    >Criteria, metric question, and scoring framework
-                    </p>
-                </template>
-                <template x-if="!qframework3">
-                    <p class="pl-6 text-gray-300 text-sm mb-3 hover:underline cursor-pointer"
-                    @click="toogleqFramework3"
-                    >Criteria, metric question, and scoring framework
-                    </p>
-                </template>
+
+            <li class= " ">
+                <button
+                    :class="{ 'text-red-700 underline' : tema === 'livecyclemanagement' }"
+                    @click=" tema= 'livecyclemanagement', sidebar='thematic'"
+                    class="text-gray-300 hover:underline font-bold  text-sm   uppercase cursor-pointer">
+                    c. {{__('Lifecycle Management')}}</a>
+                </button>
+
+                <button
+                    :class="{ 'text-red-700 underline' : tema === 'lmdescription' }"
+                    @click=" tema= 'lmdescription', sidebar='thematic'"
+                    class="text-gray-300 hover:underline font-bold    pl-4 text-xs mb-3   cursor-pointer">
+                    Criteria, metric question, and scoring framework
+                </button>
             </li>
-            <li class="text-gray-300 text-sm  ">
-                <template x-if="cWellbeing">
-                    <a class="uppercase underline text-red-700 cursor-pointer"
-                    @click="tooglecWellbeing"
-                    >d. {{__('Community Wellbeing')}}</a>
-                </template>
-                <template x-if="!cWellbeing">
-                    <a class="uppercase hover:underline text-gray-300  cursor-pointer"
-                    @click="tooglecWellbeing"
-                    >d. {{__('Community Wellbeing')}}</a>
-                </template>
-                <template x-if="qframework4">
-                    <p class="pl-6 text-red-700 text-sm mb-3 underline cursor-pointer"
-                    @click="toogleqFramework4"
-                    >Criteria, metric question, and scoring framework
-                    </p>
-                </template>
-                <template x-if="!qframework4">
-                    <p class="pl-6 text-gray-300 text-sm mb-3 hover:underline cursor-pointer"
-                    @click="toogleqFramework4"
-                    >Criteria, metric question, and scoring framework
-                    </p>
-                </template>
+
+
+
+
+            <li class= "  ">
+                <button
+                    :class="{ 'text-red-700 underline' : tema === 'communitywellbeuing' }"
+                    @click=" tema= 'communitywellbeuing', sidebar='thematic'"
+                    class="text-gray-300 hover:underline font-bold  text-sm  uppercase cursor-pointer">
+                    d. {{__('Community Wellbeing')}}</a>
+                </button>
+
+                <button
+                    :class="{ 'text-red-700 underline' : tema === 'cwdescription' }"
+                    @click=" tema= 'cwdescription', sidebar='thematic'"
+                    class="text-gray-300 hover:underline font-bold    pl-4  text-xs mb-3   cursor-pointer">
+                    Criteria, metric question, and scoring framework
+                </button>
             </li>
-            <li class="text-gray-300 text-sm  ">
-                <template x-if="wCondition">
-                    <a class="uppercase underline text-red-700 cursor-pointer"
-                    @click="tooglewCondition"
-                    >e. {{__('Working Conditions')}}</a>
-                </template>
-                <template x-if="!wCondition">
-                    <a class="uppercase hover:underline text-gray-300  cursor-pointer"
-                    @click="tooglewCondition"
-                    >e. {{__('Working Conditions')}}</a>
-                </template>
-                <template x-if="qframework5">
-                    <p class="pl-6 text-red-700 text-sm mb-3 underline cursor-pointer"
-                    @click="toogleqFramework5"
-                    >Criteria, metric question, and scoring framework
-                    </p>
-                </template>
-                <template x-if="!qframework5">
-                    <p class="pl-6 text-gray-300 text-sm mb-3 hover:underline cursor-pointer"
-                    @click="toogleqFramework5"
-                    >Criteria, metric question, and scoring framework
-                    </p>
-                </template>
+            <li class= "  ">
+                <button
+                    :class="{ 'text-red-700 underline' : tema === 'workingcondition' }"
+                    @click=" tema= 'workingcondition', sidebar='thematic'"
+                    class="text-gray-300 hover:underline font-bold text-sm   uppercase cursor-pointer">
+                    e. {{__('Working Conditions')}}</a>
+                </button>
+
+                <button
+                    :class="{ 'text-red-700 underline' : tema === 'wcdescription' }"
+                    @click=" tema= 'wcdescription', sidebar='thematic'"
+                    class="text-gray-300 hover:underline font-bold    pl-4  text-xs mb-3   cursor-pointer">
+                    Criteria, metric question, and scoring framework
+                </button>
             </li>
-            <li class="text-gray-300 text-sm  ">
-                <template x-if="eResponsibility">
-                    <a class="uppercase underline text-red-700 cursor-pointer"
-                    @click="toogleeResponsibility"
-                    >f. {{__('Environmental Responsibility')}}</a>
-                </template>
-                <template x-if="!eResponsibility">
-                    <a class="uppercase hover:underline text-gray-300  cursor-pointer"
-                    @click="toogleeResponsibility"
-                    >f. {{__('Environmental Responsibility')}}</a>
-                </template>
-                <template x-if="qframework6">
-                    <p class="pl-6 text-red-700 text-sm mb-3 underline cursor-pointer"
-                    @click="toogleqFramework6"
-                    >Criteria, metric question, and scoring framework
-                    </p>
-                </template>
-                <template x-if="!qframework6">
-                    <p class="pl-6 text-gray-300 text-sm mb-3 hover:underline cursor-pointer"
-                    @click="toogleqFramework6"
-                    >Criteria, metric question, and scoring framework
-                    </p>
-                </template>
+            <li class= "  ">
+                <button
+                    :class="{ 'text-red-700 underline' : tema === 'environmentalresponsibility' }"
+                    @click=" tema= 'environmentalresponsibility', sidebar='thematic'"
+                    class="text-gray-300 hover:underline font-bold text-sm   uppercase cursor-pointer">
+                    f. {{__('Environmental Responsibility')}}</a>
+                </button>
+
+                <button
+                    :class="{ 'text-red-700 underline' : tema === 'erdescription' }"
+                    @click=" tema= 'erdescription', sidebar='thematic'"
+                    class="text-gray-300 hover:underline font-bold    pl-4  text-xs mb-3   cursor-pointer">
+                    Criteria, metric question, and scoring framework
+                </button>
             </li>
 
 
@@ -277,7 +232,7 @@
     </div>
     <div class="sm:col-span-8 col-span-12 space-y-1">
         {{-- intro --}}
-        <div class="w-full border border-gray-200 dark:border-opacity-20 rounded min-h-screen bg-gray-300 px-4 py-4" x-show="intro" x-transition x-cloak style="display: none !important">
+        <div class="w-full border border-gray-200 dark:border-opacity-20 rounded min-h-screen bg-gray-300 px-4 py-4" x-show="sidebar === 'intro'" x-transition x-cloak style="display: none !important">
             <h1 class="text-2xl font-semibold mb-4">Introduction</h1>
             <h1 class="text-1xl font-semibold ">The RMI Framework 2020</h1>
             <p class="mb-4">This Framework document sets out the core content ofthe Responsible Mining Index (RMI) 2020. It provides acomprehensive reference of the major aspects of responsiblemining, based on society expectations of large-scale miningcompanies. As an extract of the RMI Methodology 2020, theframework includes information on a set of 43 topics, providingbrief overviews of each topic as well as the indicators andmetrics used in the RMI assessment to measure miningcompany policies and practices on these topics.</p>
@@ -310,66 +265,66 @@
         </div>
 
         {{-- economicdev --}}
-        <div class="w-full border border-gray-200 dark:border-opacity-20 rounded min-h-screen bg-gray-300 px-4 py-4" x-show="economicdev" x-transition x-cloak style="display: none !important">
+        <div class="w-full border border-gray-200 dark:border-opacity-20 rounded min-h-screen bg-gray-300 px-4 py-4" x-show="tema === 'economic' " x-transition x-cloak style="display: none !important">
             <h1 class="text-2xl font-semibold mb-4">{{__('Economic Development')}}</h1>
             <p>Not available for 2021</p>
         </div>
 
         {{-- qframework1 --}}
-        <div class="w-full border border-gray-200 dark:border-opacity-20 rounded min-h-screen bg-gray-300 px-4 py-4" x-show="qframework1" x-transition x-cloak style="display: none !important">
+        <div class="w-full border border-gray-200 dark:border-opacity-20 rounded min-h-screen bg-gray-300 px-4 py-4" x-show="tema === 'eddescription'" x-transition x-cloak style="display: none !important">
             <h1 class="text-2xl font-semibold mb-4">{{__('Economic Development')}}</h1>
             <p>Not available for 2021</p>
         </div>
 
         {{-- bconduct --}}
-        <div class="w-full border border-gray-200 dark:border-opacity-20 rounded min-h-screen bg-gray-300 px-4 py-4" x-show="bConduct" x-transition x-cloak style="display: none !important" >
+        <div class="w-full border border-gray-200 dark:border-opacity-20 rounded min-h-screen bg-gray-300 px-4 py-4" x-show="tema === 'bussinesconduct' " x-transition x-cloak style="display: none !important" >
             <h1 class="text-2xl font-semibold mb-4">{{__('Business Conduct')}}</h1>
             <p class="mb-4">Mining companies, like other global businesses, areanswerable to their owners and shareholders, whetherthese be private individuals, corporations, governmentsor taxpayers. They are also increasingly being held toaccount by stakeholders and the global marketplace,which expect companies to apply ethical businesspractices and sound systems of corporate governanceand transparency to their operations. In response to thisdemand some mining companies have made commitmentsto more responsibly manage the economic, environmental,social and governance (EESG) aspects of their operations.</p>
             <p class="mb-4">Just as a mining company’s economic developmentefforts can contribute to the achievement of the UN’sSustainable Development Goals (SDG) (See Section A) ,responsible business conduct by mining companies can help producing countries progress toward these goals. For example, transparency of mining business practices, especially in countries with weak governance or corruption, not only helps to showcase a company’s good practices, but also can contribute to greater producingcountry accountability (SDG 16) and a higher potential for mineral wealth to reduce poverty (SDG 1) and provide benefits to the whole population.</p>
-           <p class="mb-4">Conducting businesses with integrity also enables companies to respect human rights, workers and the environment; protect against corruption; and create value for producing countries and communities affected by mining activities, all of which are important concept swithin the SDG. </p>
+        <p class="mb-4">Conducting businesses with integrity also enables companies to respect human rights, workers and the environment; protect against corruption; and create value for producing countries and communities affected by mining activities, all of which are important concept swithin the SDG. </p>
         </div>
 
         {{-- qframework2 --}}
         @include('partials.qframeworkBconduct')
 
         {{-- lManagement --}}
-        <div class="w-full border border-gray-200 dark:border-opacity-20 rounded min-h-screen bg-gray-300 px-4 py-4" x-show="lManagement" x-transition x-cloak style="display: none !important">
+        <div class="w-full border border-gray-200 dark:border-opacity-20 rounded min-h-screen bg-gray-300 px-4 py-4" x-show="tema === 'livecyclemanagement'" x-transition x-cloak style="display: none !important">
             <h1 class="text-2xl font-semibold mb-4">{{__('Lifecycle Management')}}</h1>
             <p>Not available for 2021</p>
         </div>
 
         {{-- qframework3 --}}
-        <div class="w-full border border-gray-200 dark:border-opacity-20 rounded min-h-screen bg-gray-300 px-4 py-4" x-show="qframework3" x-transition x-cloak style="display: none !important">
+        <div class="w-full border border-gray-200 dark:border-opacity-20 rounded min-h-screen bg-gray-300 px-4 py-4" x-show="tema === 'lmdescription'" x-transition x-cloak style="display: none !important">
             <h1 class="text-2xl font-semibold mb-4">{{__('Lifecycle Management')}}</h1>
             <p>Not available for 2021</p>
         </div>
 
         {{-- cWellbeing --}}
-        <div class="w-full border border-gray-200 dark:border-opacity-20 rounded min-h-screen bg-gray-300 px-4 py-4" x-show="cWellbeing" x-transition x-cloak style="display: none !important">
+        <div class="w-full border border-gray-200 dark:border-opacity-20 rounded min-h-screen bg-gray-300 px-4 py-4" x-show="tema === 'communitywellbeuing'" x-transition x-cloak style="display: none !important">
             <h1 class="text-2xl font-semibold mb-4">{{__('Community Wellbeing')}}</h1>
             <p>Not available for 2021</p>
         </div>
 
         {{-- qframework4 --}}
-        <div class="w-full border border-gray-200 dark:border-opacity-20 rounded min-h-screen bg-gray-300 px-4 py-4" x-show="qframework4" x-transition x-cloak style="display: none !important">
+        <div class="w-full border border-gray-200 dark:border-opacity-20 rounded min-h-screen bg-gray-300 px-4 py-4" x-show="tema === 'cwdescription'" x-transition x-cloak style="display: none !important">
             <h1 class="text-2xl font-semibold mb-4">{{__('Community Wellbeing')}}</h1>
             <p>Not available for 2021</p>
         </div>
 
         {{-- wCondition --}}
-        <div class="w-full border border-gray-200 dark:border-opacity-20 rounded min-h-screen bg-gray-300 px-4 py-4" x-show="wCondition" x-transition x-cloak style="display: none !important">
+        <div class="w-full border border-gray-200 dark:border-opacity-20 rounded min-h-screen bg-gray-300 px-4 py-4" x-show="tema === 'workingcondition' " x-transition x-cloak style="display: none !important">
             <h1 class="text-2xl font-semibold mb-4">{{__('Working Conditions')}}</h1>
             <p>Not available for 2021</p>
         </div>
 
-         {{-- qframework5 --}}
-         <div class="w-full border border-gray-200 dark:border-opacity-20 rounded min-h-screen bg-gray-300 px-4 py-4" x-show="qframework5" x-transition x-cloak style="display: none !important">
+        {{-- qframework5 --}}
+        <div class="w-full border border-gray-200 dark:border-opacity-20 rounded min-h-screen bg-gray-300 px-4 py-4" x-show="tema === 'wcdescription'" x-transition x-cloak style="display: none !important">
             <h1 class="text-2xl font-semibold mb-4">{{__('Working Conditions')}}</h1>
             <p>Not available for 2021</p>
         </div>
 
         {{-- eResponsibility --}}
-        <div class="w-full border border-gray-200 dark:border-opacity-20 rounded min-h-screen bg-gray-300 px-4 py-4" x-show="eResponsibility" x-transition x-cloak style="display: none !important">
+        <div class="w-full border border-gray-200 dark:border-opacity-20 rounded min-h-screen bg-gray-300 px-4 py-4" x-show="tema === 'environmentalresponsibility' " x-transition x-cloak style="display: none !important">
             <h1 class="text-2xl font-semibold mb-4">{{__('Environmental Responsibility')}}</h1>
             <p class="mb-4">Large-scale mining typically involves the removal ofvegetation and soil, the diversion of watercourses, and the movement of massive amounts of rock. These activities can permanently transform landscapes and ecosystems, and create temporary impacts such as noise, and water and air emissions, which in turn, may lead to impacts on community health (See D.06).</p>
             <p class="mb-4">When poorly managed, mining can have devastating impacts on the environment, through the catastrophic failures of waste facilities (see F.02), creation of pollution issues that can last hundreds of years, or permanent destruction of biodiversity and ecosystem services upon which communities depend (See F.05).</p>
@@ -377,7 +332,7 @@
             <p class="mb-4">Additionally, a landscape approach to assessing the impacts of a mining project can help a company understand a mine’s incremental impacts when there are other major developments in a region, and plan appropriate mitigation strategies to ensure that the ts do not put human health at risk or cause unacceptable damage to the environment (See F.01).</p>
         </div>
 
-         {{-- qframework6 --}}
-         @include('partials.qframeworkEresponsibility')
+        {{-- qframework6 --}}
+        @include('partials.qframeworkEresponsibility')
     </div>
 </div>

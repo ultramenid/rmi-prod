@@ -17,19 +17,20 @@
 
             <div class="bg-gray-300  px-4 py-6">
                 <div class="flex justify-between">
-                    <div class="w-6/12 px-2 py-3">
+                    <div class="w-7/12 px-2 py-3">
                         <h2 class="text-rmi text-xl font-bold">Company Name</h2>
                     </div>
-                    <div class="w-6/12 px-2 py-3">
+                    <div class="w-5/12 px-2 py-3">
                         <h2 class="text-rmi text-xl font-bold">Location</h2>
                     </div>
                 </div>
                 @foreach ($corporates as $item)
-                    <div class="flex justify-between mb-6">
-                        <div class="w-6/12 px-2 py-3 border border-rmi items-center flex">
+                    <div class="flex sm:flex-row flex-col justify-between mb-6">
+                        <div class="sm:w-7/12 w-full px-2 py-3 border border-rmi items-center flex space-x-6">
+                            <img src="{{ asset('storage/files/shares/'.$item->logo) }}" alt="responsible mining indonesia" class="h-20">
                             <a href="{{ route('corporatedetail', [app()->getLocale(), $item->id]) }}" class="hover:underline text-rmi text-xl font-bold">{{$item->name}}</a>
                         </div>
-                        <div class="w-6/12 px-2 py-3 border-r border-b border-t border-rmi">
+                        <div class="sm:w-5/12 w-full  px-2 py-3 border-r border-b sm:border-t sm:border-l-0 border-l border-rmi">
                             <h2 class="text-rmi font-light">{{$item->lokasi}}</h2>
                         </div>
                     </div>

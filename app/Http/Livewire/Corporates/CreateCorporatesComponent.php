@@ -5,8 +5,10 @@ namespace App\Http\Livewire\Corporates;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class CreateCorporatesComponent extends Component{
+    use WithFileUploads;
     public $sidenav = 'overview';
     public $overview = true, $operationalrea = false, $financial = false, $corporatenetwork = false, $spotlight = false;
     public $category = '...', $overviewenglish, $overviewindonesia, $operationenglish, $operationindonesia, $financialenglish, $ownershipenglish, $ownershipindonesia, $financialindonesia, $corporatenetworkenglish, $corporatenetworkindonesia, $corporatename, $spotlightenglish, $spotlightindonesia,
@@ -16,7 +18,7 @@ class CreateCorporatesComponent extends Component{
     $communityExecution, $communityAverage, $communityAll,
     $condition, $workingAverage, $workingAll,
     $responsibility, $fAverage, $fAll,
-    $groupname, $location;
+    $groupname, $location, $photo;
     public $isCategory, $categories = [];
 
     public function toogleCategory(){

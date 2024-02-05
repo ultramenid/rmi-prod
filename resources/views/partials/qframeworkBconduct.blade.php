@@ -1,5 +1,5 @@
 {{-- qframework2 --}}
-<div class="w-full border border-gray-200 dark:border-opacity-20 rounded min-h-screen bg-gray-300 px-4 py-4 " x-show="qframework2" x-transition x-cloak style="display: none !important"
+<div class="w-full border border-gray-200 dark:border-opacity-20 rounded min-h-screen bg-gray-300 px-4 py-4 " x-show="tema==='bcdescription'" x-transition x-cloak style="display: none !important"
 x-data="qframework2">
     <h1 class="text-2xl font-semibold mb-4">{{__('Business Conduct')}}</h1>
 

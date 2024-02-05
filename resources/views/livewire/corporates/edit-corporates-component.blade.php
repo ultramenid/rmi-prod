@@ -184,6 +184,25 @@
                 <div class="flex  justify-between items-center mb-2">
                     <h1 class="text-2xl text-newgray-900 dark:text-newgray-300 font-semibold ">Overview</h1>
                 </div>
+                <div class="w-full  border-gray-300 dark:border-opacity-20 rounded py-6 mb-6">
+                    <h1 class="text-2xl font-semibold  text-newbg-newgray-900 dark:text-gray-300 mb-6">Image </h1>
+                    <div class="flex items-center justify-center px-2 py-2 border border-dashed border-gray-400 rounded" x-data="{ isUploading: false, progress: 0 }" x-on:livewire-upload-start="isUploading = true" x-on:livewire-upload-finish="isUploading = false; progress = 5" x-on:livewire-upload-error="isUploading = false" x-on:livewire-upload-progress="progress = $event.detail.progress">
+                        <label class="cursor-pointer">
+                            @if ($uphoto)
+                                @if ($photo)
+                                    <img src="{{$photo->temporaryUrl()}}" alt="" class=" mx-auto w-full rounded ">
+                                @else
+                                    <img src="{{ asset('/storage/files/shares/'.$uphoto)  }}" alt="" class=" mx-auto w-full h-44 rounded ">
+                                @endif
+                            @endif
+                            <input type='file' class="hidden" wire:model='photo' accept="image/*" />
+                            <p wire:loading.remove wire:target="photo" class="text-xs text-center text-gray-400 mt-2">Clik to upload image</p>
+                            <div x-show.transition="isUploading" class="progress progress-sm mt-2 rounded flex justify-center">
+                                <span class="text-xs text-black dark:text-white" x-text="'Uploading ' + progress + '%'"></span>
+                        </div>
+                        </label>
+                    </div>
+                </div>
                 <div class="mb-6">
                     <label class="text-newgray-900 dark:text-gray-300">Name:</label>
                     <input type="text" class="w-full border border-gray-300 py-1 px-4 focus:outline-none" id="corporatename" wire:model.defer='corporatename' placeholder="Name. . . ">

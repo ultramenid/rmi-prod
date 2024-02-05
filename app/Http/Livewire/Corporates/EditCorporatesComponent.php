@@ -4,9 +4,14 @@ namespace App\Http\Livewire\Corporates;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManager;
 use Livewire\Component;
+use Livewire\WithFileUploads;
+
 
 class EditCorporatesComponent extends Component{
+    use WithFileUploads;
     public $idcorporates;
     public $sidenav = 'overview';
     public $category, $overview = true, $operationalrea = false, $financial = false, $corporatenetwork = false, $spotlight = false;
@@ -17,9 +22,31 @@ class EditCorporatesComponent extends Component{
     $communityExecution, $communityAverage, $communityAll,
     $condition, $workingAverage, $workingAll,
     $responsibility, $fAverage, $fAll,
-    $groupname, $location;
+    $groupname, $location, $photo, $uphoto;
     public $isCategory, $categories = [];
 
+    public function uploadImage(){
+        $file = $this->photo->store('public/files/shares');
+        $foto = $this->photo->hashName();
+
+        $manager = new ImageManager();
+
+        // https://image.intervention.io/v2/api/fit
+        $image = $manager->make('storage/files/shares/'.$foto)->fit(300, 150);
+        $image->save('storage/files/shares/thumbnail/'.$foto);
+        return $foto;
+    }
+
+    public function updatedPhoto($photo){
+        $extension = pathinfo($photo->getFilename(), PATHINFO_EXTENSION);
+        if (!in_array($extension, ['png', 'jpeg', 'bmp', 'gif','jpg','webp','mp4', 'avi', '3gp', 'mov', 'm4a'])) {
+           $this->reset('photo');
+           $message = 'Files not supported';
+           $type = 'error'; //error, success
+           $this->emit('toast',$message, $type);
+        }
+
+    }
     public function toogleCategory(){
         $this->isCategory = true;
     }
@@ -78,6 +105,8 @@ class EditCorporatesComponent extends Component{
         $this->fAverage = $data->eAverage;
         $this->categories = explode(',', $data->kategori);
         $this->fAll = $data->fAll;
+        $this->uphoto = $data->logo;
+
     }
 
     public function getstringCategory(){
@@ -87,11 +116,21 @@ class EditCorporatesComponent extends Component{
     public function updateCorporate(){
 
        if($this->setValidation()){
+        if(!$this->photo){
+            $name = $this->uphoto;
+        }else{
+                Storage::delete('public/files/shares/'.$this->uphoto);
+                Storage::delete('public/files/shares/thumbnail/'.$this->uphoto);
+                 $name=  $this->uploadImage();
+
+
+        }
         DB::table('corporateprofilepages')->where('id', $this->idcorporates)->update([
             'name'=> $this->corporatename,
             'kategori' => $this->getstringCategory(),
             'shortname' => $this->groupname,
             'lokasi' => $this->location,
+            'logo' => $name,
             'overviewenglish' => $this->overviewenglish,
             'overviewindonesia' => $this->overviewindonesia,
             'operationareaenglish' => $this->operationenglish,
