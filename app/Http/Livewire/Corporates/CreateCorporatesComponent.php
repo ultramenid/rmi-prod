@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Corporates;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Intervention\Image\ImageManager;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -23,6 +24,29 @@ class CreateCorporatesComponent extends Component{
 
     public function toogleCategory(){
         $this->isCategory = true;
+    }
+
+    public function uploadImage(){
+        $file = $this->photo->store('public/files/shares');
+        $foto = $this->photo->hashName();
+
+        $manager = new ImageManager();
+
+        // https://image.intervention.io/v2/api/fit
+        $image = $manager->make('storage/files/shares/'.$foto)->fit(300, 150);
+        $image->save('storage/files/shares/thumbnail/'.$foto);
+        return $foto;
+    }
+
+    public function updatedPhoto($photo){
+        $extension = pathinfo($photo->getFilename(), PATHINFO_EXTENSION);
+        if (!in_array($extension, ['png', 'jpeg', 'bmp', 'gif','jpg','webp','mp4', 'avi', '3gp', 'mov', 'm4a'])) {
+           $this->reset('photo');
+           $message = 'Files not supported';
+           $type = 'error'; //error, success
+           $this->emit('toast',$message, $type);
+        }
+
     }
 
     public function closeCategory(){
@@ -50,6 +74,7 @@ class CreateCorporatesComponent extends Component{
         if($this->setValidation()){
             DB::table('corporateprofilepages')->insert([
                 'name'=> $this->corporatename,
+                'logo' => $this->uploadImage(),
                 'kategori' => $this->getstringCategory(),
                 'shortname' => $this->groupname,
                 'lokasi' => $this->location,
