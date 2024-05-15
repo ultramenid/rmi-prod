@@ -22,7 +22,7 @@ class EditCorporatesComponent extends Component{
     $communityExecution, $communityAverage, $communityAll,
     $condition, $workingAverage, $workingAll,
     $responsibility, $fAverage, $fAll,
-    $groupname, $location, $photo, $uphoto;
+    $groupname, $location, $locationEN, $photo, $uphoto;
     public $isCategory, $categories = [];
 
     public function uploadImage(){
@@ -74,6 +74,7 @@ class EditCorporatesComponent extends Component{
         $this->corporatename = $data->name;
         $this->groupname = $data->shortname;
         $this->location = $data->lokasi;
+        $this->locationEN = $data->lokasiEN;
         $this->overviewenglish = $data->overviewenglish;
         $this->overviewindonesia = $data->overviewindonesia;
         $this->operationenglish = $data->operationareaenglish;
@@ -130,6 +131,7 @@ class EditCorporatesComponent extends Component{
             'kategori' => $this->getstringCategory(),
             'shortname' => $this->groupname,
             'lokasi' => $this->location,
+            'lokasiEN' => $this->locationEN,
             'logo' => $name,
             'overviewenglish' => $this->overviewenglish,
             'overviewindonesia' => $this->overviewindonesia,

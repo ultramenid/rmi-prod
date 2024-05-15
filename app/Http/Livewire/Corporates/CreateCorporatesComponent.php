@@ -19,7 +19,7 @@ class CreateCorporatesComponent extends Component{
     $communityExecution, $communityAverage, $communityAll,
     $condition, $workingAverage, $workingAll,
     $responsibility, $fAverage, $fAll,
-    $groupname, $location, $photo;
+    $groupname, $location,$locationEN, $photo;
     public $isCategory, $categories = [];
 
     public function toogleCategory(){
@@ -78,6 +78,7 @@ class CreateCorporatesComponent extends Component{
                 'kategori' => $this->getstringCategory(),
                 'shortname' => $this->groupname,
                 'lokasi' => $this->location,
+                'lokasiEN' => $this->locationEN,
                 'overviewenglish' => $this->overviewenglish,
                 'overviewindonesia' => $this->overviewindonesia,
                 'operationareaenglish' => $this->operationenglish,

@@ -31,7 +31,7 @@
                             <a href="{{ route('corporatedetail', [app()->getLocale(), $item->id]) }}" class="hover:underline text-rmi text-xl font-bold">{{$item->name}}</a>
                         </div>
                         <div class="sm:w-5/12 w-full  px-2 py-3 border-r border-b sm:border-t sm:border-l-0 border-l border-rmi">
-                            <h2 class="text-rmi font-light">{{$item->lokasi}}</h2>
+                            <h2 class="text-rmi font-light">{{ (app()->getLocale() == 'en') ? $item->lokasiEN :  $item->lokasi}}</h2>
                         </div>
                     </div>
                 @endforeach

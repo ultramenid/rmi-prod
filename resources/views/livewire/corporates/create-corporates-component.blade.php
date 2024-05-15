@@ -255,6 +255,10 @@
                     <label class="text-newgray-900 dark:text-gray-300">Location</label>
                     <textarea cols="80" id="location"  rows="4"  wire:model.defer='location' required placeholder="Location. . ." class="border-gray-300 border px-4 py-1 focus:outline-none"></textarea>
                 </div>
+                <div class="mb-6 flex flex-col">
+                    <label class="text-newgray-900 dark:text-gray-300">Location English</label>
+                    <textarea cols="80" id="location"  rows="4"  wire:model.defer='locationEN' required placeholder="Location. . ." class="border-gray-300 border px-4 py-1 focus:outline-none"></textarea>
+                </div>
                 <p class="text-newgray-900 dark:text-gray-300 ">Content English :</p>
                 <div class="w-full  "
                         wire:ignore

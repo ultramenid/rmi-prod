@@ -17,7 +17,7 @@ class CorporateProfileController extends Controller{
 
     public function getCorporates(){
         return DB::table('corporateprofilepages')
-                    ->select('name', 'id','lokasi', 'logo')
+                    ->select('name', 'id','lokasi','lokasiEN', 'logo')
                     ->orderBy('name', 'asc')
                     ->get();
     }
