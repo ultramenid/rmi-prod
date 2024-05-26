@@ -56,9 +56,9 @@
                 </div>
             </div>
         </div>
-    <div class=" flex justify-center z-20">
-        <a href="{{ route('index', app()->getlocale() )}}">
-            <img loading="lazy" src="{{ asset('assets/LogoKTIPutih.png') }}" alt="" class="sm:w-72 w-48 sm:py-12 py-16">
+    <div class=" flex items-center justify-center z-20 h-28 py-24">
+        <a href="{{ route('index', app()->getlocale() )}}" class="text-white text-6xl font-black  text-center">
+            Kinerja Tambang Indonesia
         </a>
     </div>
 </header>

@@ -14,8 +14,6 @@
 
         {{-- Overall text --}}
         <div class="max-w-6xl mx-auto sm:py-16 py-8">
-
-
             <h1 class="uppercase text-center text-gray-300 sm:text-3xl text-xl font-bold mb-6 px-4">{{__('Overall Company Result')}}</h1>
             <div class="flex w-full sm:flex-row flex-col flex-wrap px-4">
                 <div class="bgrmi  sm:w-4/12 w-full">
@@ -290,19 +288,10 @@
             name: 'Economic Development %' ,
             type: 'bar',
             data: economicdevelopment.development,
-          }, {
-            name: 'Average %',
-            type: 'line',
-            data: economicdevelopment.developmentAverage,
-          },{
-            name: 'ED-ALL',
-            type: 'area',
-            data: economicdevelopment.developmentAll,
           }],
 
           chart: {
             id: 'development',
-            group: 'charts',
             foreColor: 'gray',
             width: '100%',
             height: 400,
@@ -358,7 +347,7 @@
             max: 100
           },
           tooltip: {
-            shared: true,
+            shared: false,
             intersect: false,
             theme: "dark",
             y: {
@@ -373,19 +362,10 @@
             name: 'Bussiness Conduct %' ,
             type: 'bar',
             data: bussinesconduct.bExecution,
-          }, {
-            name: 'Average %',
-            type: 'line',
-            data: bussinesconduct.bAverage,
-          },{
-            name: 'BC-ALL',
-            type: 'area',
-            data: bussinesconduct.bAll,
           }],
 
           chart: {
             id: 'busssines',
-            group: 'charts',
             foreColor: 'gray',
             width: '100%',
             height: 400,
@@ -441,7 +421,7 @@
             max: 100
           },
           tooltip: {
-            shared: true,
+            shared: false,
             intersect: false,
             theme: "dark",
             y: {
@@ -456,19 +436,10 @@
             name: 'Lifecyle Management %' ,
             type: 'bar',
             data: lifecyclemanagement.management,
-          }, {
-            name: 'Average %',
-            type: 'line',
-            data: lifecyclemanagement.managementAverage,
-          },{
-            name: 'LM-ALL',
-            type: 'area',
-            data: lifecyclemanagement.managementAll,
           }],
 
           chart: {
             id: 'management',
-            group: 'charts',
             foreColor: 'gray',
             width: '100%',
             height: 400,
@@ -539,19 +510,10 @@
             name: 'Community Wellbeing %' ,
             type: 'bar',
             data: communitywellbeing.communityExecution,
-          }, {
-            name: 'Average %',
-            type: 'line',
-            data: communitywellbeing.communityAverage,
-          },{
-            name: 'CW-ALL',
-            type: 'area',
-            data: communitywellbeing.communityAll,
           }],
 
           chart: {
             id: 'community',
-            group: 'charts',
             foreColor: 'gray',
             width: '100%',
             height: 400,
@@ -622,19 +584,10 @@
             name: 'Working Conditions %' ,
             type: 'bar',
             data: workingconditions.condition,
-          }, {
-            name: 'Average %',
-            type: 'line',
-            data: workingconditions.workingAverage,
-          },{
-            name: 'WC-ALL',
-            type: 'area',
-            data: workingconditions.workingAll,
           }],
 
           chart: {
             id: 'working',
-            group: 'charts',
             foreColor: 'gray',
             width: '100%',
             height: 400,
@@ -705,19 +658,10 @@
             name: 'Environmental Responsibility %' ,
             type: 'bar',
             data: environmental.eResponsibility,
-          }, {
-            name: 'Average %',
-            type: 'line',
-            data: environmental.eAverage,
-          },{
-            name: 'ER-ALL',
-            type: 'area',
-            data: environmental.fAll,
           }],
 
           chart: {
             id: 'working',
-            group: 'charts',
             foreColor: 'gray',
             width: '100%',
             height: 400,

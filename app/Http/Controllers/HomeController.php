@@ -14,7 +14,7 @@ class HomeController extends Controller
                   ->first();
     }
     public function getEconomicDevelopment(){
-        $bExecution =  DB::table('corporateprofilepages')->select('shortname','development','developmentAverage','developmentAll')->orderBy('shortname', 'desc')->get();
+        $bExecution =  DB::table('corporateprofilepages')->select('shortname','development','developmentAverage','developmentAll')->orderBy('development', 'desc')->get();
         foreach($bExecution as $item){
             $data['name'][] = $item->shortname;
             $data['development'][] = $item->development;
@@ -25,7 +25,7 @@ class HomeController extends Controller
         return json_encode($data);
     }
     public function getBussinesConduct(){
-        $bExecution =  DB::table('corporateprofilepages')->select('shortname','bExecution','bAverage','bAll')->orderBy('shortname', 'desc')->get();
+        $bExecution =  DB::table('corporateprofilepages')->select('shortname','bExecution','bAverage','bAll')->orderBy('bExecution', 'desc')->get();
         foreach($bExecution as $item){
             $data['name'][] = $item->shortname;
             $data['bExecution'][] = $item->bExecution;
@@ -36,7 +36,7 @@ class HomeController extends Controller
         return json_encode($data);
     }
     public function getLifecyclemanagement(){
-        $bExecution =  DB::table('corporateprofilepages')->select('shortname','management','managementAverage','managementAll')->orderBy('shortname', 'desc')->get();
+        $bExecution =  DB::table('corporateprofilepages')->select('shortname','management','managementAverage','managementAll')->orderBy('management', 'desc')->get();
         foreach($bExecution as $item){
             $data['name'][] = $item->shortname;
             $data['management'][] = $item->management;
@@ -48,7 +48,7 @@ class HomeController extends Controller
     }
 
     public function getCommunityWellbeing(){
-        $bExecution =  DB::table('corporateprofilepages')->select('shortname','communityExecution','communityAverage','communityAll')->orderBy('shortname', 'desc')->get();
+        $bExecution =  DB::table('corporateprofilepages')->select('shortname','communityExecution','communityAverage','communityAll')->orderBy('communityExecution', 'desc')->get();
         foreach($bExecution as $item){
             $data['name'][] = $item->shortname;
             $data['communityExecution'][] = $item->communityExecution;
@@ -60,7 +60,7 @@ class HomeController extends Controller
     }
 
     public function getWorkingConditions(){
-        $bExecution =  DB::table('corporateprofilepages')->select('shortname','condition','workingAverage','workingAll')->orderBy('shortname', 'desc')->get();
+        $bExecution =  DB::table('corporateprofilepages')->select('shortname','condition','workingAverage','workingAll')->orderBy('condition', 'desc')->get();
         foreach($bExecution as $item){
             $data['name'][] = $item->shortname;
             $data['condition'][] = $item->condition;
@@ -72,7 +72,7 @@ class HomeController extends Controller
     }
 
     public function getEnviromentalResponsibility(){
-        $bExecution =  DB::table('corporateprofilepages')->select('shortname','eResponsibility','eAverage','fAll')->orderBy('shortname', 'desc')->get();
+        $bExecution =  DB::table('corporateprofilepages')->select('shortname','eResponsibility','eAverage','fAll')->orderBy('eResponsibility', 'desc')->get();
         foreach($bExecution as $item){
             $data['name'][] = $item->shortname;
             $data['eResponsibility'][] = $item->eResponsibility;
